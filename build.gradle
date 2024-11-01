@@ -1,0 +1,64 @@
+plugins {
+    id 'java-library'
+   id 'io.qameta.allure' version '2.12.0'
+    id "io.freefair.lombok" version "6.0.0-m2"
+}
+
+group 'demoshop'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+def allureVersion = "2.28.1"
+
+allure {
+    report {
+        version.set(allureVersion)
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set(allureVersion)
+            }
+        }
+    }
+}
+
+dependencies {
+    testImplementation(
+            'org.seleniumhq.selenium:selenium-java:4.25.0',
+            'io.github.bonigarcia:webdrivermanager:5.9.2',
+            "org.junit.jupiter:junit-jupiter-api:5.11.2",
+            'org.junit.jupiter:junit-jupiter-engine:5.11.2',
+            'org.junit.jupiter:junit-jupiter:5.11.2',
+            "io.qameta.allure:allure-junit5:$allureVersion",
+            'org.slf4j:slf4j-simple:2.0.13',
+            'org.projectlombok:lombok:1.18.32',
+            'com.github.javafaker:javafaker:1.0.2',
+            'org.aspectj:aspectjweaver:1.9.22.1'
+    )
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+task web(type: Test) {
+    useJUnitPlatform {
+        includeTags("web")
+    }
+}
