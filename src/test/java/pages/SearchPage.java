@@ -26,8 +26,8 @@ public class SearchPage extends BasePage {
         log.info("Searching for item: {}", query);
     }
 
-    @Step("Find product by price '{}'")
-    public WebElement findByPrice(BigDecimal price) {
+    @Step("Find product by price '{price}'")
+    public WebElement findProductByPrice(BigDecimal price) {
         List<WebElement> products = getElements(SIMPLE_COMPUTER_PRICE);
         for (WebElement product : products) {
             BigDecimal actualPrice = new BigDecimal(product.getText()).setScale(2, RoundingMode.HALF_UP);
@@ -38,8 +38,8 @@ public class SearchPage extends BasePage {
         throw new NoSuchElementException("Product with expected price not found: " + price);
     }
 
-    @Step("Find product by title '{}'")
-    public WebElement findProductByTitle(String title) {
+    @Step("Find product by name '{title}'")
+    public WebElement findProductByName(String title) {
         List<WebElement> products = getElements(PRODUCT_NAME_HEADER);
         for (WebElement product : products) {
             String productName = product.getText().trim();
@@ -50,7 +50,7 @@ public class SearchPage extends BasePage {
         throw new NoSuchElementException("Product with title '" + title + "' not found.");
     }
 
-    @Step("Click on product link '{}'")
+    @Step("Click on product link '{title}'")
     public void clickOnProductLink(String title) {
         getElement(SIMPLE_COMPUTER_LINK).click();
         log.info("Clicked on product link: {}", title);
@@ -58,7 +58,7 @@ public class SearchPage extends BasePage {
 
     @Step("Check if search result is displayed")
     public boolean isSearchResultDisplayed() {
-        handleAlert();
+        handleUnexpectedAlert();
         waitElementVisible(SEARCH_RESULTS);
         return getElement(SEARCH_RESULTS).isDisplayed();
     }
@@ -73,6 +73,7 @@ public class SearchPage extends BasePage {
         }
     }
 
+    @Step("Handle unexpected alert if present")
     public boolean handleUnexpectedAlert() {
         try {
             Alert alert = driver.switchTo().alert();
@@ -86,14 +87,14 @@ public class SearchPage extends BasePage {
         }
     }
 
-    @Step("Verify that product name is visible")
+    @Step("Verify that product name is visible: '{nameProduct}'")
     public void verifyProductName(String nameProduct) {
         waitElementVisible(PRODUCT_NAME_HEADER_DETAIL_PAGE);
         String actualName = getElement(PRODUCT_NAME_HEADER_DETAIL_PAGE).getText().trim();
         assertEquals(nameProduct, actualName, "Expected product name to be: " + nameProduct);
     }
 
-    @Step("Verify that the product price is correct")
+    @Step("Verify that the product price is correct: '{expectedPrice}'")
     public void verifyProductPrice(BigDecimal expectedPrice) {
         BigDecimal actualPrice = new BigDecimal(getElement(PRODUCT_PRICE).getText()).setScale(
                 2, RoundingMode.HALF_UP);
@@ -109,24 +110,24 @@ public class SearchPage extends BasePage {
         return By.xpath("//label[contains(text(),'" + value + "')]/preceding-sibling::input[@type='checkbox']");
     }
 
-    @Step("Click on the checkbox with value '{}'")
+    @Step("Click on the checkbox with value '{value}'")
     public void clickCheckbox(String value) {
         jsClick(getElement(getCheckboxLocator(value)));
         log.info("Clicked checkbox with value: " + value);
     }
 
-    @Step("Click radio button with value '{}'")
+    @Step("Click radio button with value '{value}'")
     public void clickRadioButton(String value) {
         jsClick(getElement(getRadioButtonLocator(value)));
         log.info("Clicked radio button with value: " + value);
     }
 
-    @Step("Check if the checkbox with value '{}' selected")
+    @Step("Verify if the checkbox with value '{value}' is selected")
     public boolean isCheckboxChecked(String value) {
         return getElement(getCheckboxLocator(value)).isSelected();
     }
 
-    @Step("Check if the radio button with value '{}' selected")
+    @Step("Verify if the radio button with value '{value}' is selected")
     public boolean isRadioButtonSelected(String value) {
         return getElement(getRadioButtonLocator(value)).isSelected();
     }
@@ -144,10 +145,10 @@ public class SearchPage extends BasePage {
                 getElement(NOTIFICATION_BAR).getText().contains("The product has been added to your shopping cart");
     }
 
-    @Step("Click on the shopping cart link '{}'")
-    public SearchPage clickShoppingCartLink() {
+    @Step("Click on the shopping cart link")
+    public ShoppingCartPage clickShoppingCartLink() {
         clickElement(SHOPPING_CART);
         log.info("Clicked on 'Shopping Cart' link");
-        return this;
+        return new ShoppingCartPage(driver);
     }
 }

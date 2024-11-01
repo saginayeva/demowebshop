@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import pages.SearchPage;
@@ -23,7 +24,7 @@ public class SearchTest extends TestBase {
         searchPage = new SearchPage(driver);
     }
 
-    @DisplayName("Search Results")
+    @DisplayName("Verify search results are displayed for a valid query")
     @Test
     void testSearchWithResults() {
         searchPage.searchForItem("computer");
@@ -31,12 +32,12 @@ public class SearchTest extends TestBase {
         log.info("Search with results displayed successfully");
     }
 
-    @DisplayName("Select Product")
+    @DisplayName("Verify selecting a specific product")
     @Test
-    void testChooseToProduct() {
+    void testSelectProduct() {
         searchPage.searchForItem("computer");
-        searchPage.findProductByTitle("Simple Computer");
-        searchPage.findByPrice(BigDecimal.valueOf(800.00).setScale(2, RoundingMode.HALF_UP));
+        searchPage.findProductByName("Simple Computer");
+        searchPage.findProductByPrice(BigDecimal.valueOf(800.00).setScale(2, RoundingMode.HALF_UP));
         searchPage.clickOnProductLink("Simple Computer");
         log.info("Selected 'Simple Computer' product");
 
@@ -45,10 +46,10 @@ public class SearchTest extends TestBase {
                 "Expected the URL to end with '/simple-computer' but was: " + actualUrl);
     }
 
-    @DisplayName("Set 'Simple Computer' and verify")
+    @DisplayName("Verify adding product to cart and product details")
     @Test
     void testAddProductAndVerifyDetails() {
-        testChooseToProduct();
+        testSelectProduct();
         searchPage.verifyProductName("Simple Computer");
         searchPage.verifyProductPrice(BigDecimal.valueOf(800.00));
 
@@ -60,7 +61,7 @@ public class SearchTest extends TestBase {
         searchPage.clickShoppingCartLink();
     }
 
-    @DisplayName("Search without results")
+    @DisplayName("Verify no results message for nonexistent item")
     @Test
     void testSearchWithoutResults() {
         searchPage.searchForItem("nonexistentitem");
@@ -68,13 +69,14 @@ public class SearchTest extends TestBase {
                 "Expected no results message to be displayed for nonexistent items");
     }
 
-    @DisplayName("Alert displayed when search fails")
+    @DisplayName("Verify alert is displayed when search input is empty")
     @Test
     void testDisplayAlertWhenSearchIsEmpty() {
         searchPage.searchForItem("");
         assertTrue(searchPage.handleUnexpectedAlert(), "Expected alert to be displayed for empty search");
     }
 
+    @Step("Select product options")
     private void selectProductOptions() {
         searchPage.clickRadioButton("Slow");
         searchPage.clickRadioButton("4 GB");
@@ -83,6 +85,7 @@ public class SearchTest extends TestBase {
         searchPage.clickCheckbox("Image Viewer");
     }
 
+    @Step("Verify selected product options")
     private void verifySelectedProductOptions() {
         assertTrue(searchPage.isRadioButtonSelected("Slow"));
         assertTrue(searchPage.isRadioButtonSelected("4 GB"));
