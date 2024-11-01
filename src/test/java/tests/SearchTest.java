@@ -49,7 +49,6 @@ public class SearchTest extends TestBase {
     @Test
     void testAddProductAndVerifyDetails() {
         testChooseToProduct();
-
         searchPage.verifyProductName("Simple Computer");
         searchPage.verifyProductPrice(BigDecimal.valueOf(800.00));
 
@@ -58,6 +57,7 @@ public class SearchTest extends TestBase {
         searchPage.clickAddToCartButton();
         assertTrue(searchPage.isProductAddedToCartMessageDisplayed(),
                 "The product has been added to your shopping cart");
+        searchPage.clickShoppingCartLink();
     }
 
     @DisplayName("Search without results")
