@@ -47,6 +47,9 @@ compileTestJava {
 }
 
 test {
+
+    systemProperties(System.getProperties())
+
     useJUnitPlatform()
 
     testLogging {
@@ -58,6 +61,9 @@ test {
 }
 
 task web(type: Test) {
+
+    systemProperties(System.getProperties())
+
     useJUnitPlatform {
         includeTags("web")
     }
