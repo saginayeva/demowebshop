@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
 
@@ -20,12 +21,14 @@ public class SearchPage extends BasePage {
         super(driver);
     }
 
+    @Step("Search for item '{0}'")
     public void searchForItem(String query) {
         setElementValue(SEARCH_INPUT, query);
         clickElement(SEARCH_BUTTON);
         log.info("Searching for item: {}", query);
     }
 
+    @Step("Find by price '{0}'")
     public WebElement findByPrice(BigDecimal price) {
         List<WebElement> products = getElements(SIMPLE_COMPUTER_PRICE);
         for (WebElement product : products) {
@@ -37,6 +40,7 @@ public class SearchPage extends BasePage {
         throw new NoSuchElementException("Product with expected price not found: " + price);
     }
 
+    @Step("Find product by title '{0}'")
     public WebElement findProductByTitle(String title) {
         List<WebElement> products = getElements(PRODUCT_NAME_HEADER);
         for (WebElement product : products) {
@@ -48,17 +52,20 @@ public class SearchPage extends BasePage {
         throw new NoSuchElementException("Product with title '" + title + "' not found.");
     }
 
+    @Step("Click on product link '{0}'")
     public void clickOnProductLink(String title) {
         getElement(SIMPLE_COMPUTER_LINK).click();
         log.info("Clicked on product link: {}", title);
     }
 
+    @Step("Check if search result is displayed")
     public boolean isSearchResultDisplayed() {
         handleAlert();
         waitElementVisible(SEARCH_RESULTS);
         return getElement(SEARCH_RESULTS).isDisplayed();
     }
 
+    @Step("Check if no result message is displayed")
     public boolean isNoResultsMessageDisplayed() {
         try {
             return getElement(NO_RESULTS_MESSAGE).isDisplayed();
@@ -81,12 +88,14 @@ public class SearchPage extends BasePage {
         }
     }
 
+    @Step("Verify product name '{0}'")
     public void verifyProductName(String nameProduct) {
         waitElementVisible(PRODUCT_NAME_HEADER_DETAIL_PAGE);
         String actualName = getElement(PRODUCT_NAME_HEADER_DETAIL_PAGE).getText().trim();
         assertEquals(nameProduct, actualName, "Expected product name to be: " + nameProduct);
     }
 
+    @Step("Verify product price '{0}'")
     public void verifyProductPrice(BigDecimal expectedPrice) {
         BigDecimal actualPrice = new BigDecimal(getElement(PRODUCT_PRICE).getText()).setScale(
                 2, RoundingMode.HALF_UP);
