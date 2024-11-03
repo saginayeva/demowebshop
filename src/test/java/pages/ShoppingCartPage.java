@@ -31,6 +31,7 @@ public class ShoppingCartPage extends BasePage {
 
     @Step("Select country '{}'")
     public ShoppingCartPage selectCountry(String country) {
+        scrollToElement(getElement(COUNTRY_DD));
         selectOption(COUNTRY_DD, country);
         log.info("Selected country: " + country);
         return this;

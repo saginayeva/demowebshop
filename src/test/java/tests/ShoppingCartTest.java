@@ -16,6 +16,7 @@ public class ShoppingCartTest extends TestBase {
         super.setUp();
         testData = new TestData();
         shoppingCartPage = new ShoppingCartPage(driver);
+        registerAndAddProductToCart();
     }
 
     @Test
@@ -27,6 +28,7 @@ public class ShoppingCartTest extends TestBase {
                 .clickTermOfServiceAgreement()
                 .clickCheckoutButton();
         //assert
+//        assertTrue(shoppingCartPage.isCheckoutPageDisplayed(), "Expected to be on checkout page");
     }
 
     @Test
@@ -50,5 +52,6 @@ public class ShoppingCartTest extends TestBase {
         shoppingCartPage.clickContinuePaymentInformationButton()
                 .clickConfirmButton();
         //assert
+//        assertTrue(shoppingCartPage.isOrderConfirmationDisplayed(), "Expected order confirmation message");
     }
 }

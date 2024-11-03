@@ -135,6 +135,7 @@ public class SearchPage extends BasePage {
     @Step("Add product to the shopping cart")
     public void clickAddToCartButton() {
         clickElement(ADD_TO_CART_BUTTON);
+        waitElementDisappear(LOADING_IMAGE);
         log.info("Clicked on 'Add to Cart' button");
     }
 

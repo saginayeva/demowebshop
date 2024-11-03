@@ -42,14 +42,14 @@ public class Constants {
         public static final By PRODUCT_NAME_HEADER = By.className("product-title");
         public static final By PRODUCT_PRICE = By.className("product-price");
         public static final By NOTIFICATION_BAR = By.id("bar-notification"); //class"content
+        public static final By LOADING_IMAGE = By.className("loading-image");
     }
-
     public class HeaderLinksLocators {
         public static final By SHOPPING_CART = By.id("topcartlink");
         public static final By LOGOUT_LINK = By.linkText("Log out");
         public static final By ACCOUNT_LINK = By.className("account");
-    }
 
+    }
     public class ShoppingCartLocators {
         public static final By CHECKBOX_CART = By.name("removefromcart");
         public static final By COUNTRY_DD = By.name("CountryId");
