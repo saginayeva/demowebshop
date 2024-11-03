@@ -69,11 +69,13 @@ public class TestBase {
 
     @AfterEach
     void tearDown() {
+
+        attachAttachments();
+
         if (driver != null) {
             driver.quit();
         }
 
-        attachAttachments();
     }
 
     void attachAttachments() {
