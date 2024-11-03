@@ -3,7 +3,6 @@ package tests;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import pages.RegistrationPage;
 import utils.TestData;
 

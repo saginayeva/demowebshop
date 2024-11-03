@@ -10,8 +10,6 @@ import java.util.List;
 
 import static constants.Constants.HeaderLinksLocators.SHOPPING_CART;
 import static constants.Constants.SearchLocators.*;
-import static constants.Constants.ShoppingCartLocators.*;
-import static constants.Constants.ShoppingCartLocators.CONFIRM_BUTTON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j

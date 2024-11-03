@@ -19,14 +19,14 @@ public class SystemPropertiesTests {
         System.setProperty("browser", "chrome");
         String browser = System.getProperty("browser");
 
-        System.out.println(browser); 
+        System.out.println(browser);
     }
 
     @Test
     void systemProperties2Test() {
         String browser = System.getProperty("browser", "mozilla");
 
-        System.out.println(browser); 
+        System.out.println(browser);
     }
 
     @Test
