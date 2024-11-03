@@ -1,5 +1,7 @@
 package tests;
 
+import helpers.Attach;
+import helpers.DriverContainer;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -20,15 +22,17 @@ import static constants.Constants.Url.REGISTRATION_URL;
 public class TestBase {
     protected WebDriver driver;
 
+    protected static boolean isRemote;
+
     @BeforeAll
     static void beforeAll() {
         WebDriverManager.chromedriver().setup();
+        isRemote = Boolean.parseBoolean(System.getProperty("isRemote", "false"));
     }
 
     @BeforeEach
     public void setUp() {
 
-        boolean isRemote = Boolean.parseBoolean(System.getProperty("isRemote", "false"));
 
         if (isRemote) {
 
@@ -55,6 +59,8 @@ public class TestBase {
             driver = new ChromeDriver();
         }
 
+        DriverContainer.setDriver(driver);
+
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT));
         driver.get(REGISTRATION_URL);
@@ -66,5 +72,15 @@ public class TestBase {
         if (driver != null) {
             driver.quit();
         }
+
+        attachAttachments();
     }
+
+    void attachAttachments() {
+        Attach.screenshotAs("Last screen");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
+    }
+
 }
