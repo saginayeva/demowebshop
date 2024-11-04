@@ -1,5 +1,6 @@
 package tests;
 
+import helpers.ShoppingFlowHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.ShoppingCartPage;
@@ -9,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ShoppingCartTest extends TestBase {
     private ShoppingCartPage shoppingCartPage;
+    private ShoppingFlowHelper shoppingFlowHelper;
     private TestData testData;
 
     @BeforeEach
@@ -16,11 +18,12 @@ public class ShoppingCartTest extends TestBase {
         super.setUp();
         testData = new TestData();
         shoppingCartPage = new ShoppingCartPage(driver);
-        registerAndAddProductToCart();
+        shoppingFlowHelper = new ShoppingFlowHelper(driver);
     }
 
     @Test
     void testShoppingCart() {
+        shoppingFlowHelper.registerAndAddProductToCart();
         shoppingCartPage.clickShoppingCartLink()
                 .clickCheckbox()
                 .selectCountry("United States")

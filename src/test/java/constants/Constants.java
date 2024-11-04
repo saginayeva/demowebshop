@@ -51,7 +51,7 @@ public class Constants {
 
     }
     public class ShoppingCartLocators {
-        public static final By CHECKBOX_CART = By.name("removefromcart");
+        public static final By CHECKBOX_CART = By.cssSelector("table.cart input[type='checkbox'][name='removefromcart']");
         public static final By COUNTRY_DD = By.name("CountryId");
         public static final By STATE_PROVINCE_DD = By.name("StateProvinceId");
         public static final By CHECKOUT_BUTTON = By.name("checkout");

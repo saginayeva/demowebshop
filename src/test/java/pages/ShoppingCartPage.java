@@ -17,6 +17,7 @@ public class ShoppingCartPage extends BasePage {
 
     @Step("Click on shopping cart button")
     public ShoppingCartPage clickShoppingCartLink() {
+        waitElementVisible(SHOPPING_CART);
         clickElement(SHOPPING_CART);
         log.info("Clicked on 'Shopping Cart' link");
         return this;
@@ -24,9 +25,14 @@ public class ShoppingCartPage extends BasePage {
 
     @Step("Click on checkbox cart")
     public ShoppingCartPage clickCheckbox() {
-        jsClick(getElement(CHECKBOX_CART));
+        waitElementClickable(CHECKBOX_CART);
+        getElement(CHECKBOX_CART).click();
         log.info("Clicked on checkbox");
         return this;
+    }
+
+    public boolean isCheckboxSelected() {
+        return getElement(CHECKBOX_CART).isSelected();
     }
 
     @Step("Select country '{}'")

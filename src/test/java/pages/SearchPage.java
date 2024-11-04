@@ -136,6 +136,7 @@ public class SearchPage extends BasePage {
     public void clickAddToCartButton() {
         clickElement(ADD_TO_CART_BUTTON);
         waitElementDisappear(LOADING_IMAGE);
+        waitElementDisappear(NOTIFICATION_BAR);
         log.info("Clicked on 'Add to Cart' button");
     }
 
