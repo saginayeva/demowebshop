@@ -22,7 +22,7 @@ public class TestData {
     }
 
     public String getPassword() {
-        return faker.internet().password(5, 8, true, false, true);
+        return faker.internet().password(5, 9, true, true, true);
     }
 
     public String getPhoneNumber() {
