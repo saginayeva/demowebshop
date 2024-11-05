@@ -46,7 +46,7 @@ public class TestBase {
         options.addArguments("--no-sandbox", "--disable-dev-shm-usage", "--disable-popup-blocking", "--remote-allow-origins=*", "--window-size=1920,1080");
 
         if (isRunningInCICD()) {
-            options.addArguments("--headless", "--disable-gpu", "--disable-extensions");
+            options.addArguments("--headless", "--disable-gpu", "--disable-extensions","--no-sandbox", "--disable-dev-shm-usage");
         }
 
         if (isRemote) {
