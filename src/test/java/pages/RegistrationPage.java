@@ -3,14 +3,24 @@ package pages;
 import com.github.javafaker.Faker;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-
-import static constants.Constants.RegistrationLocators.*;
 
 @Slf4j
 public class RegistrationPage extends BasePage {
 
+    private static final By REGISTER_LINK = By.linkText("Register");
+    private static final By GENDER_MALE = By.id("gender-male");
+    private static final By GENDER_FEMALE = By.id("gender-female");
+    private static final By FIRST_NAME_INPUT = By.id("FirstName");
+    private static final By LAST_NAME_INPUT = By.id("LastName");
+    private static final By EMAIL_INPUT = By.id("Email");
+    private static final By PASSWORD_INPUT = By.id("Password");
+    private static final By CONFIRM_PASSWORD_INPUT = By.id("ConfirmPassword");
+    private static final By REGISTER_BUTTON = By.id("register-button");
+    private static final By REGISTRATION_RESULT_MESSAGE = By.className("page-body");
+    private static final By VALIDATION_ERROR_MESSAGE = By.className("field-validation-error");
     private static final Faker faker = new Faker();
 
     public RegistrationPage(WebDriver driver) {

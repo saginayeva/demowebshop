@@ -9,11 +9,25 @@ import java.math.RoundingMode;
 import java.util.List;
 
 import static constants.Constants.HeaderLinksLocators.SHOPPING_CART;
-import static constants.Constants.SearchLocators.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
 public class SearchPage extends BasePage {
+
+    private static final By SEARCH_INPUT = By.id("small-searchterms");
+    private static final By SEARCH_BOX = By.className("search-box");
+    private static final By SEARCH_BUTTON = By.cssSelector("input[value='Search']");
+    private static final By SEARCH_RESULTS = By.className("search-results");
+    private static final By NO_RESULTS_MESSAGE = By.className("search-results");
+    private static final By SIMPLE_COMPUTER_LINK = By.linkText("Simple Computer");
+    private static final By SIMPLE_COMPUTER_PRICE = By.className("prices");
+    private static final By ADD_TO_CART_BUTTON = By.id("add-to-cart-button-75");
+    private static final By CART_QUANTITY = By.className("cart-qty");
+    private static final By PRODUCT_NAME_HEADER_DETAIL_PAGE = By.className("product-name");
+    private static final By PRODUCT_NAME_HEADER = By.className("product-title");
+    private static final By PRODUCT_PRICE = By.className("product-price");
+    private static final By NOTIFICATION_BAR = By.id("bar-notification");
+    private static final By LOADING_IMAGE = By.className("loading-image");
 
     public SearchPage(WebDriver driver) {
         super(driver);
@@ -111,7 +125,7 @@ public class SearchPage extends BasePage {
     }
 
     @Step("Click on the checkbox with value '{value}'")
-    public void clickCheckbox(String value) {
+    public void clickCheckboxSetSoftware(String value) {
         jsClick(getElement(getCheckboxLocator(value)));
         log.info("Clicked checkbox with value: " + value);
     }
@@ -123,7 +137,7 @@ public class SearchPage extends BasePage {
     }
 
     @Step("Verify if the checkbox with value '{value}' is selected")
-    public boolean isCheckboxChecked(String value) {
+    public boolean isCheckboxSoftwareChecked(String value) {
         return getElement(getCheckboxLocator(value)).isSelected();
     }
 
@@ -142,7 +156,7 @@ public class SearchPage extends BasePage {
 
     @Step("Check if the product added to cart message is displayed")
     public boolean isProductAddedToCartMessageDisplayed() {
-        waitElementDisappear(NOTIFICATION_BAR);
+        waitElementVisible(NOTIFICATION_BAR);
         return getElement(NOTIFICATION_BAR).isDisplayed() &&
                 getElement(NOTIFICATION_BAR).getText().contains("The product has been added to your shopping cart");
     }
