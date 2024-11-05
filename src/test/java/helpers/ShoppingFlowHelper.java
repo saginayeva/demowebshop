@@ -1,6 +1,7 @@
 package helpers;
 
 import org.openqa.selenium.WebDriver;
+import pages.BasePage;
 import pages.RegistrationPage;
 import pages.SearchPage;
 import utils.TestData;
@@ -8,11 +9,9 @@ import utils.TestData;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class ShoppingFlowHelper {
-    private final WebDriver driver;
-
+public class ShoppingFlowHelper extends BasePage {
     public ShoppingFlowHelper(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public void registerAndAddProductToCart() {
