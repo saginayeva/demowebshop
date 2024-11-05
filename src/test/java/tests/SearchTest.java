@@ -4,7 +4,6 @@ import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import pages.SearchPage;
-import utils.TestData;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -15,12 +14,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SearchTest extends TestBase {
 
     private SearchPage searchPage;
-    private TestData testData;
 
     @BeforeEach
     public void setUp() {
         super.setUp();
-        testData = new TestData();
         searchPage = new SearchPage(driver);
     }
 
@@ -58,7 +55,6 @@ public class SearchTest extends TestBase {
         searchPage.clickAddToCartButton();
         assertTrue(searchPage.isProductAddedToCartMessageDisplayed(),
                 "The product has been added to your shopping cart");
-        searchPage.clickShoppingCartLink();
     }
 
     @DisplayName("Verify no results message for nonexistent item")
@@ -81,8 +77,8 @@ public class SearchTest extends TestBase {
         searchPage.clickRadioButton("Slow");
         searchPage.clickRadioButton("4 GB");
         searchPage.clickRadioButton("400 GB");
-        searchPage.clickCheckbox("Office Suite");
-        searchPage.clickCheckbox("Image Viewer");
+        searchPage.clickCheckboxSetSoftware("Office Suite");
+        searchPage.clickCheckboxSetSoftware("Image Viewer");
     }
 
     @Step("Verify selected product options")
@@ -90,7 +86,7 @@ public class SearchTest extends TestBase {
         assertTrue(searchPage.isRadioButtonSelected("Slow"));
         assertTrue(searchPage.isRadioButtonSelected("4 GB"));
         assertTrue(searchPage.isRadioButtonSelected("400 GB"));
-        assertTrue(searchPage.isCheckboxChecked("Image Viewer"));
-        assertTrue(searchPage.isCheckboxChecked("Office Suite"));
+        assertTrue(searchPage.isCheckboxSoftwareChecked("Image Viewer"));
+        assertTrue(searchPage.isCheckboxSoftwareChecked("Office Suite"));
     }
 }

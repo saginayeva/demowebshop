@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class ShoppingFlowHelper {
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public ShoppingFlowHelper(WebDriver driver) {
         this.driver = driver;
@@ -35,7 +35,7 @@ public class ShoppingFlowHelper {
         searchPage.clickRadioButton("Slow");
         searchPage.clickRadioButton("4 GB");
         searchPage.clickRadioButton("400 GB");
-        searchPage.clickCheckbox("Office Suite");
+        searchPage.isCheckboxSoftwareChecked("Office Suite");
         searchPage.verifyProductName("Simple Computer");
         searchPage.verifyProductPrice(BigDecimal.valueOf(800.00));
         searchPage.clickAddToCartButton();

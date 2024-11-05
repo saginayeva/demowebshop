@@ -25,12 +25,11 @@ public class ShoppingCartTest extends TestBase {
     void testShoppingCart() {
         shoppingFlowHelper.registerAndAddProductToCart();
         shoppingCartPage.clickShoppingCartLink()
-                .clickCheckbox()
+                .clickCheckboxShoppingCart("Simple Computer")
                 .selectCountry("United States")
-                .selectCountry("California")
+                .selectState("California")
                 .clickTermOfServiceAgreement()
                 .clickCheckoutButton();
-        //assert
 //        assertTrue(shoppingCartPage.isCheckoutPageDisplayed(), "Expected to be on checkout page");
     }
 
@@ -39,6 +38,7 @@ public class ShoppingCartTest extends TestBase {
         String address = testData.getStreetAddress();
         String phoneNumber = testData.getPhoneNumber();
 
+        testShoppingCart();
         shoppingCartPage.setInputDD("CountryId", "United States")
                 .setInputDD("StateProvinceId", "California")
                 .setInputValue("City", "Los Angeles")
@@ -47,14 +47,13 @@ public class ShoppingCartTest extends TestBase {
                 .setInputValue("PhoneNumber", phoneNumber)
                 .clickContinueButton()
                 .clickCheckboxInStorePickup()
-                .clickContinueButton()
+                .clickContinueShippingAddressButton()
                 .clickCheckboxPaymentMethodCheckMoneyOrder()
                 .clickContinuePaymentMethodButton();
         assertTrue(shoppingCartPage.isPaymentInformationDisplayed());
 
         shoppingCartPage.clickContinuePaymentInformationButton()
                 .clickConfirmButton();
-        //assert
 //        assertTrue(shoppingCartPage.isOrderConfirmationDisplayed(), "Expected order confirmation message");
     }
 }
