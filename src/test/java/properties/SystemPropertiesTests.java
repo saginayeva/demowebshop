@@ -53,7 +53,7 @@ public class SystemPropertiesTests {
     @Test
     @Tag("hello")
     void systemProperties5Test() {
-        String name = System.getProperty("name", "default student");
+        String name = System.getProperty("name", "default");
         String message = format("Hello, %s!", name);
 
         System.out.println(message);
