@@ -3,59 +3,33 @@ package properties;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static java.lang.String.format;
-
 public class SystemPropertiesTests {
 
     @Test
     void systemPropertiesTest() {
-        String browser = System.getProperty("browser");
-
-        System.out.println(browser); // null
-    }
-
-    @Test
-    void systemProperties1Test() {
-        System.setProperty("browser", "chrome");
-        String browser = System.getProperty("browser");
-
+        String browser = System.getProperty("browser", "defaultBrowser");
         System.out.println(browser);
     }
 
     @Test
-    void systemProperties2Test() {
-        String browser = System.getProperty("browser", "mozilla");
-
-        System.out.println(browser);
-    }
-
-    @Test
-    void systemProperties3Test() {
+    void systemPropertiesSetAndGetTest() {
         System.setProperty("browser", "chrome");
-        String browser = System.getProperty("browser", "mozilla");
-
+        String browser = System.getProperty("browser");
         System.out.println(browser); // chrome
     }
 
     @Test
     @Tag("property")
-    void systemProperties4Test() {
+    void systemPropertiesWithDefaultTest() {
         String browser = System.getProperty("browser", "mozilla");
-
         System.out.println(browser);
-        // gradle property_test
-        // mozilla
-
-        // gradle property_test -Dbrowser=opera
-        // opera
     }
 
     @Test
     @Tag("hello")
-    void systemProperties5Test() {
+    void greetingWithSystemProperty() {
         String name = System.getProperty("name", "default");
-        String message = format("Hello, %s!", name);
-
+        String message = String.format("Hello, %s!", name);
         System.out.println(message);
     }
 
