@@ -10,7 +10,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 import static org.openqa.selenium.logging.LogType.BROWSER;
@@ -18,18 +17,17 @@ import static org.openqa.selenium.logging.LogType.BROWSER;
 @Slf4j
 public class Attach {
     @Attachment(value = "{attachName}", type = "image/png")
-    public static byte[] screenshotAs(String attachName) {
-        return ((TakesScreenshot) DriverContainer.getDriver()).getScreenshotAs(OutputType.BYTES);
+    public static void screenshotAs(String attachName) {
+        ((TakesScreenshot) DriverContainer.getDriver()).getScreenshotAs(OutputType.BYTES);
     }
 
     @Attachment(value = "Page source", type = "text/plain")
-    public static byte[] pageSource() {
-        return DriverContainer.getDriver().getPageSource().getBytes(StandardCharsets.UTF_8);
+    public static void pageSource() {
+        DriverContainer.getDriver().getPageSource();
     }
 
     @Attachment(value = "{attachName}", type = "text/plain")
-    public static String attachAsText(String attachName, String message) {
-        return message;
+    public static void attachAsText(String attachName, String message) {
     }
 
     public static void browserConsoleLogs() {
@@ -53,20 +51,17 @@ public class Attach {
     }
 
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
-    public static String addVideo() {
-        return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
-                + getVideoUrl()
-                + "' type='video/mp4'></video></body></html>";
+    public static void addVideo() {
+        getVideoUrl();
     }
 
-    public static URL getVideoUrl() {
+    public static void getVideoUrl() {
         String videoUrl = "https://selenoid.autotests.cloud/video/" + getSessionId() + ".mp4";
         try {
-            return new URL(videoUrl);
+            new URL(videoUrl);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
     public static String getSessionId() {
