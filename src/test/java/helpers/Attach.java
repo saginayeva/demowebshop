@@ -31,11 +31,8 @@ public class Attach {
     }
 
     public static void browserConsoleLogs() {
-
         LogEntries logEntries = DriverContainer.getDriver().manage().logs().get(BROWSER);
-
         StringBuilder string4LogEntries = new StringBuilder();
-
         for (LogEntry entry : logEntries) {
             string4LogEntries.append(new Date(entry.getTimestamp()));
             string4LogEntries.append(" ");

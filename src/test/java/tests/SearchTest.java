@@ -1,8 +1,10 @@
 package tests;
 
+import helpers.MyTestWatcher;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import pages.SearchPage;
 
 import java.math.BigDecimal;
@@ -11,6 +13,7 @@ import java.math.RoundingMode;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
+@ExtendWith(MyTestWatcher.class)
 public class SearchTest extends TestBase {
 
     private SearchPage searchPage;

@@ -1,15 +1,18 @@
 package tests;
 
+import helpers.MyTestWatcher;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.api.extension.ExtendWith;
 import pages.RegistrationPage;
 import utils.TestData;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
+@ExtendWith(MyTestWatcher.class)
 public class RegistrationTest extends TestBase {
 
     private RegistrationPage registrationPage;

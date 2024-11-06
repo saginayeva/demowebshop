@@ -2,6 +2,7 @@ package tests;
 
 import helpers.Attach;
 import helpers.DriverContainer;
+import helpers.Screenshot;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,10 +12,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.time.Duration;
-import java.util.HashMap;
+import java.util.Map;
 
 import static constants.Constants.TimeoutVariable.IMPLICIT_WAIT;
 import static constants.Constants.Url.REGISTRATION_URL;
@@ -22,6 +25,7 @@ import static constants.Constants.Url.REGISTRATION_URL;
 public class TestBase {
     protected WebDriver driver;
     protected static boolean isRemote;
+
     public static boolean isRunningInCICD() {
         return "true".equals(System.getenv("GITHUB_ACTIONS"));
     }
@@ -30,11 +34,19 @@ public class TestBase {
     static void beforeAll() {
         WebDriverManager.chromedriver().setup();
         isRemote = Boolean.parseBoolean(System.getProperty("isRemote", "false"));
+        if (!Files.exists(Screenshot.path)) {
+            try {
+                Files.createDirectories(Screenshot.path);
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to create screenshots directory", e);
+            }
+        }
+        Screenshot.clearScreenshots();
     }
 
     @BeforeEach
     public void setUp() {
-        this.driver = initializeDriver();
+        driver = initializeDriver();
         DriverContainer.setDriver(driver);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT));
@@ -43,20 +55,17 @@ public class TestBase {
 
     private WebDriver initializeDriver() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--disable-dev-shm-usage", "--disable-popup-blocking", "--remote-allow-origins=*", "--window-size=1920,1080");
-
+        options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage", "--disable-popup-blocking", "--remote-allow-origins=*", "--window-size=1920,1080");
         if (isRunningInCICD()) {
-            options.addArguments("--headless", "--disable-gpu", "--disable-extensions","--no-sandbox", "--disable-dev-shm-usage");
+            options.addArguments("--headless", "--disable-gpu", "--disable-extensions", "--no-sandbox", "--disable-dev-shm-usage");
         }
-
         if (isRemote) {
             options.setCapability("browserVersion", "100.0");
-            options.setCapability("selenoid:options", new HashMap<String, Object>() {{
-                put("enableVideo", true);
-                put("enableVNC", true);
-                put("name", "Test badge ");
-            }});
-
+            options.setCapability("selenoid:options", Map.of(
+                    "enableVideo", true,
+                    "enableVNC", true,
+                    "name", "Test badge"
+            ));
             try {
                 return new RemoteWebDriver(new URL("https://user1:1234@selenoid.autotests.cloud/wd/hub"), options);
             } catch (MalformedURLException e) {
@@ -68,7 +77,7 @@ public class TestBase {
     }
 
     @AfterEach
-    void addAttachments() {
+    void tearDown() {
         attachAttachments();
         if (driver != null) {
             driver.quit();
@@ -76,9 +85,11 @@ public class TestBase {
     }
 
     void attachAttachments() {
-        Attach.screenshotAs("Last screen");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
-        Attach.addVideo();
+        if (driver != null) {
+            Attach.screenshotAs("Last screen");
+            Attach.pageSource();
+            Attach.browserConsoleLogs();
+            Attach.addVideo();
+        }
     }
 }

@@ -1,5 +1,6 @@
 package helpers;
 
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import pages.BasePage;
 import pages.RegistrationPage;
@@ -9,6 +10,7 @@ import utils.TestData;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+@ExtendWith(MyTestWatcher.class)
 public class ShoppingFlowHelper extends BasePage {
     public ShoppingFlowHelper(WebDriver driver) {
         super(driver);
