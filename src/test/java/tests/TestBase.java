@@ -17,7 +17,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.time.Duration;
-import java.util.Map;
+import java.util.HashMap;
 
 import static constants.Constants.TimeoutVariable.IMPLICIT_WAIT;
 import static constants.Constants.Url.REGISTRATION_URL;
@@ -46,14 +46,14 @@ public class TestBase {
 
     @BeforeEach
     public void setUp() {
-        driver = initializeDriver();
+        initializeDriver();
         DriverContainer.setDriver(driver);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT));
         driver.get(REGISTRATION_URL);
     }
 
-    private WebDriver initializeDriver() {
+    private void initializeDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage", "--disable-popup-blocking", "--remote-allow-origins=*", "--window-size=1920,1080");
         if (isRunningInCICD()) {
@@ -61,18 +61,19 @@ public class TestBase {
         }
         if (isRemote) {
             options.setCapability("browserVersion", "100.0");
-            options.setCapability("selenoid:options", Map.of(
-                    "enableVideo", true,
-                    "enableVNC", true,
-                    "name", "Test badge"
-            ));
+            options.setCapability("selenoid:options", new HashMap<String, Object>() {{
+                /* How to enable video recording */
+                put("enableVideo", true);
+                put("enableVNC", true);
+                put("name", "Test badge");
+            }});
             try {
-                return new RemoteWebDriver(new URL("https://user1:1234@selenoid.autotests.cloud/wd/hub"), options);
+                this.driver = new RemoteWebDriver(new URL("https://user1:1234@selenoid.autotests.cloud/wd/hub"), options);
             } catch (MalformedURLException e) {
-                throw new IllegalArgumentException("Bad Selenoid URL", e);
+                throw new IllegalArgumentException("Bad Selenoid URL");
             }
         } else {
-            return new ChromeDriver(options);
+            driver = new ChromeDriver();
         }
     }
 
