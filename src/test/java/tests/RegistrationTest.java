@@ -3,6 +3,7 @@ package tests;
 import helpers.MyTestWatcher;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,6 +13,7 @@ import utils.TestData;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
+@Tag("web")
 @ExtendWith(MyTestWatcher.class)
 public class RegistrationTest extends TestBase {
 

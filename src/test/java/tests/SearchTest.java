@@ -13,6 +13,7 @@ import java.math.RoundingMode;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
+@Tag("web")
 @ExtendWith(MyTestWatcher.class)
 public class SearchTest extends TestBase {
 
