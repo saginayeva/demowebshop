@@ -42,22 +42,15 @@ public class TestBase {
 
     @BeforeEach
     public void setUp() {
-        initializeDriver();
-        DriverContainer.setDriver(driver);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT));
-        driver.get(REGISTRATION_URL);
-    }
-
-    private void initializeDriver() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage", "--disable-popup-blocking", "--remote-allow-origins=*", "--window-size=1920,1080");
         if (isRemote) {
+            ChromeOptions options = new ChromeOptions();
             options.setCapability("browserVersion", "100.0");
             options.setCapability("selenoid:options", new HashMap<String, Object>() {{
+
                 /* How to enable video recording */
                 put("enableVideo", true);
                 put("enableVNC", true);
+
             }});
             try {
                 this.driver = new RemoteWebDriver(new URL("https://user1:1234@selenoid.autotests.cloud/wd/hub"), options);
@@ -67,6 +60,10 @@ public class TestBase {
         } else {
             driver = new ChromeDriver();
         }
+        DriverContainer.setDriver(driver);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT));
+        driver.get(REGISTRATION_URL);
     }
 
     @AfterEach
