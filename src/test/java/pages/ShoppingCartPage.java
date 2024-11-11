@@ -1,5 +1,6 @@
 package pages;
 
+import constants.Constants;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
@@ -43,6 +44,7 @@ public class ShoppingCartPage extends BasePage {
     public ShoppingCartPage clickShoppingCartLink() {
         waitElementVisible(SHOPPING_CART);
         clickElement(SHOPPING_CART);
+        waitElementDisappear(Constants.LoadingLocators.LOADING_IMAGE);
         log.info("Clicked on 'Shopping Cart' link");
         return this;
     }

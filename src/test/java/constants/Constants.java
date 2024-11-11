@@ -22,4 +22,9 @@ public class Constants {
         public static final By ACCOUNT_LINK = By.className("account");
 
     }
+
+    public class LoadingLocators {
+        public static final By LOADING_INDICATOR = By.className("loading-indicator");
+        public static final By LOADING_IMAGE = By.className("loading-image");
+    }
 }

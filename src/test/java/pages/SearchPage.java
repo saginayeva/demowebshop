@@ -1,5 +1,6 @@
 package pages;
 
+import constants.Constants;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
@@ -27,7 +28,6 @@ public class SearchPage extends BasePage {
     private static final By PRODUCT_NAME_HEADER = By.className("product-title");
     private static final By PRODUCT_PRICE = By.className("product-price");
     private static final By NOTIFICATION_BAR = By.id("bar-notification");
-    private static final By LOADING_IMAGE = By.className("loading-image");
 
     public SearchPage(WebDriver driver) {
         super(driver);
@@ -149,7 +149,7 @@ public class SearchPage extends BasePage {
     @Step("Add product to the shopping cart")
     public void clickAddToCartButton() {
         clickElement(ADD_TO_CART_BUTTON);
-        waitElementDisappear(LOADING_IMAGE);
+        waitElementDisappear(Constants.LoadingLocators.LOADING_IMAGE);
         waitElementDisappear(NOTIFICATION_BAR);
         log.info("Clicked on 'Add to Cart' button");
     }

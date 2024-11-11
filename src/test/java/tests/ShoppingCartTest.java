@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import pages.ShoppingCartPage;
 import utils.TestData;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
@@ -31,13 +32,16 @@ public class ShoppingCartTest extends TestBase {
     @Test
     void testShoppingCart() {
         shoppingFlowHelper.registerAndAddProductToCart();
-        shoppingCartPage.clickShoppingCartLink()
-                .clickCheckboxShoppingCart("Simple Computer")
+        assertEquals("https://demowebshop.tricentis.com/simple-computer", driver.getCurrentUrl(), "Shopping cart page URL does not match");
+
+        shoppingCartPage
+                .clickShoppingCartLink()
                 .selectCountry("United States")
                 .selectState("California")
                 .clickTermOfServiceAgreement()
                 .clickCheckoutButton();
-//        assertTrue(shoppingCartPage.isCheckoutPageDisplayed(), "Expected to be on checkout page");
+        assertEquals("https://demowebshop.tricentis.com/onepagecheckout", driver.getCurrentUrl(), "Checkout page URL does not match");
+
     }
 
     @Test
