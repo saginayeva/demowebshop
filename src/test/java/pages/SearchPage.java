@@ -22,7 +22,7 @@ public class SearchPage extends BasePage {
     private static final By NO_RESULTS_MESSAGE = By.className("search-results");
     private static final By SIMPLE_COMPUTER_LINK = By.linkText("Simple Computer");
     private static final By SIMPLE_COMPUTER_PRICE = By.className("prices");
-    private static final By ADD_TO_CART_BUTTON = By.id("add-to-cart-button-75");
+    private static final By ADD_TO_CART_BUTTON = By.xpath("//input[@id='add-to-cart-button-75']");
     private static final By CART_QUANTITY = By.className("cart-qty");
     private static final By PRODUCT_NAME_HEADER_DETAIL_PAGE = By.className("product-name");
     private static final By PRODUCT_NAME_HEADER = By.className("product-title");
