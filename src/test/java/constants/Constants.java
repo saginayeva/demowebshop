@@ -16,6 +16,8 @@ public class Constants {
 
     public class HeaderLinksLocators {
         public static final By SHOPPING_CART = By.id("topcartlink");
+        public static final By REGISTER_LINK = By.linkText("Register");
+        public static final By LOG_IN_LINK = By.linkText("Log in");
         public static final By LOGOUT_LINK = By.linkText("Log out");
         public static final By ACCOUNT_LINK = By.className("account");
 

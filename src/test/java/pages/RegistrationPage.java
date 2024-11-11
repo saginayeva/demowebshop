@@ -1,6 +1,7 @@
 package pages;
 
 import com.github.javafaker.Faker;
+import constants.Constants;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
@@ -10,8 +11,6 @@ import org.openqa.selenium.support.PageFactory;
 @Slf4j
 public class RegistrationPage extends BasePage {
 
-    private static final By REGISTER_LINK = By.linkText("Register");
-    private static final By LOG_IN_LINK = By.linkText("Log in");
     private static final By GENDER_MALE = By.id("gender-male");
     private static final By GENDER_FEMALE = By.id("gender-female");
     private static final By FIRST_NAME_INPUT = By.id("FirstName");
@@ -32,12 +31,12 @@ public class RegistrationPage extends BasePage {
 
     @Step("Click register link")
     public void clickRegisterLink() {
-        clickElement(REGISTER_LINK);
+        clickElement(Constants.HeaderLinksLocators.REGISTER_LINK);
     }
 
     @Step("Click log in link")
     public RegistrationPage clickLoginLink() {
-        clickElement(LOG_IN_LINK);
+        clickElement(Constants.HeaderLinksLocators.LOG_IN_LINK);
         return this;
     }
 
