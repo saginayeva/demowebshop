@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 public class RegistrationPage extends BasePage {
 
     private static final By REGISTER_LINK = By.linkText("Register");
+    private static final By LOG_IN_LINK = By.linkText("Log in");
     private static final By GENDER_MALE = By.id("gender-male");
     private static final By GENDER_FEMALE = By.id("gender-female");
     private static final By FIRST_NAME_INPUT = By.id("FirstName");
@@ -21,6 +22,7 @@ public class RegistrationPage extends BasePage {
     private static final By REGISTER_BUTTON = By.id("register-button");
     private static final By REGISTRATION_RESULT_MESSAGE = By.className("page-body");
     private static final By VALIDATION_ERROR_MESSAGE = By.className("field-validation-error");
+    private static final By LOG_IN_BUTTON = By.cssSelector(".login-button");
     private static final Faker faker = new Faker();
 
     public RegistrationPage(WebDriver driver) {
@@ -31,6 +33,12 @@ public class RegistrationPage extends BasePage {
     @Step("Click register link")
     public void clickRegisterLink() {
         clickElement(REGISTER_LINK);
+    }
+
+    @Step("Click log in link")
+    public RegistrationPage clickLoginLink() {
+        clickElement(LOG_IN_LINK);
+        return this;
     }
 
     @Step("Click submit button")
@@ -66,5 +74,18 @@ public class RegistrationPage extends BasePage {
         getElement(EMAIL_INPUT).sendKeys(email);
         getElement(PASSWORD_INPUT).sendKeys(password);
         getElement(CONFIRM_PASSWORD_INPUT).sendKeys(password);
+    }
+
+    @Step("Enter email and password with credentials")
+    public RegistrationPage fillWithCredentials(String login, String password) {
+        getElement(EMAIL_INPUT).sendKeys(login);
+        getElement(PASSWORD_INPUT).sendKeys(password);
+        return this;
+    }
+
+    @Step("Click on the log in button")
+    public void clickLogInButton() {
+        clickElement(LOG_IN_BUTTON);
+        log.info("Clicked log in button");
     }
 }

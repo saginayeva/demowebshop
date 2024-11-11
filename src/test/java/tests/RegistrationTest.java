@@ -1,11 +1,12 @@
 package tests;
 
+import config.CredentialsConfig;
 import helpers.MyTestWatcher;
 import lombok.extern.slf4j.Slf4j;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-
 import org.junit.jupiter.api.extension.ExtendWith;
 import pages.RegistrationPage;
 import utils.TestData;
@@ -71,5 +72,17 @@ public class RegistrationTest extends TestBase {
         String errorMessage = registrationPage.getValidationErrorMessage();
         assertTrue(errorMessage.contains("Wrong email"),
                 "Expected validation error message for invalid email not found");
+    }
+
+    @Test
+    @Tag("owner")
+    void testWithCredentials() {
+        CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
+        String login = config.login();
+        String password = config.password();
+
+        registrationPage.clickLoginLink()
+                .fillWithCredentials(login, password)
+                .clickLogInButton();
     }
 }
