@@ -26,10 +26,6 @@ public class TestBase {
     protected WebDriver driver;
     protected static boolean isRemote;
 
-    public static boolean isRunningInCICD() {
-        return "true".equals(System.getenv("GITHUB_ACTIONS"));
-    }
-
     @BeforeAll
     static void beforeAll() {
         WebDriverManager.chromedriver().setup();
@@ -56,16 +52,12 @@ public class TestBase {
     private void initializeDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage", "--disable-popup-blocking", "--remote-allow-origins=*", "--window-size=1920,1080");
-        if (isRunningInCICD()) {
-            options.addArguments("--headless", "--disable-gpu", "--disable-extensions", "--no-sandbox", "--disable-dev-shm-usage");
-        }
         if (isRemote) {
             options.setCapability("browserVersion", "100.0");
             options.setCapability("selenoid:options", new HashMap<String, Object>() {{
                 /* How to enable video recording */
                 put("enableVideo", true);
                 put("enableVNC", true);
-                put("name", "Test badge");
             }});
             try {
                 this.driver = new RemoteWebDriver(new URL("https://user1:1234@selenoid.autotests.cloud/wd/hub"), options);
