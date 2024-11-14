@@ -18,6 +18,7 @@ settings.gradle
 build/
 gradle/wrapper/
 gradlew.bat
+gradlew
 .github/workflows/
 screenshots/
 !gradle/wrapper/gradle-wrapper.jar
