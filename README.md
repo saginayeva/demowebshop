@@ -20,6 +20,8 @@
 
 * <a href="#video">Selenoid test execution video examples</a>
 
+* <a href="#POM">Page Object Model to keep code clean and maintainable</a>
+
 
 -----
 <a id="tools"></a>
@@ -48,11 +50,11 @@
 <a id="cases"></a>
 ## **Examples of automated test cases:**
 **------------**
-- ✅ ------------
-- ✅ ------------
-- ✅ ------------
-- ✅ ------------
-- ✅ ------------
+- ✅ User Registration
+- ✅ Login Functionality
+- ✅ Product Search
+- ✅ Add to Cart
+- ✅ Checkout Process
 
 **------------**
 - ✅ ------------
