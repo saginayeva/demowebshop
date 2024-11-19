@@ -29,7 +29,7 @@ Comprehensive automation testing for DemoWebShop – a platform by Tricentis.
 ## <a name="Technologies and tools">**Technologies and tools:**</a>
 
 <p align="center">
-<a href="https://github.com/"><img src="devicon-github-original" title="GitHub" alt="GitHub" width="40" height="40"/> </a>
+<a href="https://github.com/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" title="GitHub" alt="GitHub" width="40" height="40"/> </a>
 <a href="https://git-scm.com/"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" title="Git" alt="Git" width="40" height="40"/> </a>
 <a href="https://junit.org/junit5"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/junit/junit-original.svg" title="JUnit5" alt="JUnit5" width="40" height="40"/> </a>
 <a href="https://www.selenium.dev/"> <img src="images/logo/selenium.svg" title="Selenium" alt="Selenium" width="40" height="40"/> </a>
