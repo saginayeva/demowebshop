@@ -1,14 +1,15 @@
 # Test Automation Project for [Demo Web Shop](https://demowebshop.tricentis.com/)
+Comprehensive automation testing for DemoWebShop – a platform by Tricentis.
 
 ## **Contents:** ##
 
 * <a href="#tools">Technologies and tools</a>
 
-* <a href="#cases">Examples of automated test cases</a>
+* <a href="#cases">Automated Test Cases</a>
 
 * <a href="#jenkins">Build in Jenkins</a>
 
-* <a href="#console">Run from Terminal</a>
+* <a href="#console">Running from Terminal</a>
 
 * <a href="#allure">Allure report</a>
 
