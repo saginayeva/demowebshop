@@ -37,6 +37,8 @@ Comprehensive automation testing for DemoWebShop – a platform by Tricentis.
 <a href="https://allurereport.org/"> <img src="images/logo/allure_report.png" title="Allure report" alt="Allure report" width="40" height="40"/> </a>
 <a href="https://qameta.io/"> <img src="images/logo/allure_testops.png" title="Allure TestOps" alt="Allure TestOps" width="40" height="40"/> </a>
 <a href="https://www.atlassian.com/software/jira"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg" title="Jira" alt="Jira" width="40" height="40"/> </a>
+<a href="https://web.telegram.org/"> <img src="images/logo/icon-telegram.png.png" title="Telegram bot" alt="Telegram bot" width="40" height="40"/> </a>
+<a href="https://web.telegram.org/"> <img src="images/logo/telegram_icon.png.png" title="Telegram bot" alt="Telegram bot" width="40" height="40"/> </a>
 </p>
 
 - The UI autotests were written in **Java**.
