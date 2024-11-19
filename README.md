@@ -31,7 +31,7 @@ Comprehensive automation testing for DemoWebShop – a platform by Tricentis.
 <p align="center">
 <a href="https://www.w3schools.com/java/"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" title="Java" alt="Java" width="40" height="40"/> </a>
 <a href="https://www.jenkins.io"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jenkins/jenkins-original.svg" title="Jenkins" alt="Jenkins" width="40" height="40"/> </a>
-<a href="https://www.selenium.dev/"> <img src="selenium.svg" title="Selenium" alt="Selenium" width="40" height="40"/> </a>
+<a href="https://www.selenium.dev/"> <img src="images/logo/selenium.svg" title="Selenium" alt="Selenium" width="40" height="40"/> </a>
 <a href="https://aerokube.com/selenoid/"><img src="images/logo/selenoid.svg" title="Selenoid" alt="Selenoid" height="40" width="40"/></a>
 <a href="https://git-scm.com/"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" title="Git" alt="Git" width="40" height="40"/> </a> 
 <a href="https://junit.org/junit5"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/junit/junit-original.svg" title="JUnit5" alt="JUnit5" width="40" height="40"/> </a>
