@@ -1,7 +1,7 @@
 # Test Automation Project for [Demo Web Shop](https://demowebshop.tricentis.com/)
 
 <p align="center">
-  <img src="./images/logo/banner.png" alt="Demo Web Shop Banner" width="600">
+  <img src="./images/logo/banner.png" alt="Demo Web Shop Banner" width="800">
 </p>
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
