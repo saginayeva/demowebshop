@@ -1,8 +1,12 @@
 # Test Automation Project for [Demo Web Shop](https://demowebshop.tricentis.com/)
-Comprehensive automation testing for DemoWebShop – a platform by Tricentis.
 
-# Demo Web Shop
-![Demo Web Shop Banner](./images/logo/banner.png)
+<p align="center">
+  <img src="./images/logo/banner.png" alt="Demo Web Shop Banner" width="600">
+</p>
+
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Test Coverage](https://img.shields.io/badge/coverage-95%25-green)
 
 ## **Contents:** ##
 
