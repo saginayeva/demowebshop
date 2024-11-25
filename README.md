@@ -83,7 +83,7 @@
 </p>
 
 <details>
-   <summary>**Jenkins build options:**</summary>
+   <summary>`Jenkins build options:`</summary>
   
 1. `BROWSER_SIZE`
 ```
