@@ -82,11 +82,19 @@
 <a href="https://jenkins.autotests.cloud/job/030_asem_jenkins_selenium/"><img src="images/screen/jenkins_report.png" alt="Jenkins" width="950"/></a>  
 </p>
 
-### **Jenkins build options:**
+<details>
+   <summary>**Jenkins build options:**</summary>
+  
+1. `BROWSER_SIZE`
+```
+default screen size - 1920x1080
+```
+2. `REMOTE_URL`
+```
 
-- `BROWSER_SIZE` (default screen size - 1920x1080)
-- `REMOTE_URL`
+```
 
+</details>
 
 ----
 <a id="console"></a>
