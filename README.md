@@ -80,8 +80,11 @@
 [View Job in Jenkins](https://jenkins.autotests.cloud/job/030_asem_jenkins_selenium/)  
 
 <p align="center">  
-<a href="https://jenkins.autotests.cloud/job/030_asem_jenkins_selenium/"><img src="images/screen/jenkins_report.png" alt="Jenkins" width="950"/></a>  
+<a href="https://jenkins.autotests.cloud/job/030_asem_jenkins_selenium/"><img src="images/screen/jenkins-project.png" alt="Jenkins" width="950"/></a>  
 </p>
+
+The following screen allows you to configure the necessary parameters for the build.
+<p align="center"> <img src="images/screen/jenkins-params.png" alt="Jenkins Build Parameters" width="950"/> </p>
 
 <details>
    <summary>Jenkins build options:</summary>
@@ -144,7 +147,7 @@ gradle clean test -Denv=remote
 
 **Main report page**
 <p align="center">  
-<a href="https://jenkins.autotests.cloud/job/030_asem_jenkins_selenium/allure/"><img src="images/screen/allure_report_main.png" alt="Allure Report main" width="950"/></a>  
+<a href="https://jenkins.autotests.cloud/job/030_asem_jenkins_selenium/allure/"><img src="images/screen/allure-report.png" alt="Allure Report main" width="950"/></a>  
 </p>
 
 **Test cases**
