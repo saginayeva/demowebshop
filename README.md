@@ -133,7 +133,7 @@ You can execute tests from the IntelliJ IDEA terminal, and they will run in a br
 
 ```bash
 gradle clean test -Denv=remote
-
+```
 ----
 <a id="allure"></a>
 ## Allure report ([link](https://jenkins.autotests.cloud/job/030_asem_jenkins_selenium/allure/))
@@ -147,7 +147,6 @@ gradle clean test -Denv=remote
 <p align="center">  
 <a href="https://jenkins.autotests.cloud/job/030_asem_jenkins_selenium/allure/"><img src="images/screen/allure_report_cases.png" alt="Allure Report testcases" width="950"/></a>  
 </p>
-
 
 ----
 <a id="testops"></a>
