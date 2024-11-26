@@ -94,6 +94,10 @@ default screen size - 1920x1080
 ```
 default https://user1:1234@selenoid.autotests.cloud/wd/hub
 ```
+3. `BROWSER`
+```
+default Chrome
+```
 
 </details>
 
