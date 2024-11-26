@@ -24,7 +24,7 @@
 
 * <a href="#jira">Integration with Jira</a>
 
-* <a href="#telegram">Telegram notification with bot</a>
+* <a href="#telegram">Telegram Notifications via Bot</a>
 
 * <a href="#video">Selenoid test execution video examples</a>
 
@@ -56,16 +56,15 @@
 - **JUnit 5** and **Selenium** frameworks were used as test frameworks.
 - For remote run, a job in **Jenkins** with **Allure report** generation and result send to **Telegram** via a bot has been implemented.
 - Integration with **Allure TestOps** and **Jira** has been established.
-
+- Docker & Selenoid: For running tests in isolated environments.
 
 ----
 <a id="cases"></a>
-## **Examples of automated test cases:**
-**------------**
+## **Examples of Automated test cases:**
 - ✅ User Registration
 - ✅ Login Functionality
 - ✅ Product Search
-- ✅ Add to Cart
+- ✅ Adding Items to Cart
 - ✅ Checkout Process
 
 **------------**
@@ -77,7 +76,9 @@
 
 ----
 <a id="jenkins"></a>
-## Build in Jenkins ([link](https://jenkins.autotests.cloud/job/030_asem_jenkins_selenium/))
+## Build in Jenkins  
+[View Job in Jenkins](https://jenkins.autotests.cloud/job/030_asem_jenkins_selenium/)  
+
 <p align="center">  
 <a href="https://jenkins.autotests.cloud/job/030_asem_jenkins_selenium/"><img src="images/screen/jenkins_report.png" alt="Jenkins" width="950"/></a>  
 </p>
@@ -91,27 +92,47 @@ default screen size - 1920x1080
 ```
 2. `REMOTE_URL`
 ```
-
+default https://user1:1234@selenoid.autotests.cloud/wd/hub
 ```
 
 </details>
 
 ----
 <a id="console"></a>
-## Run from Terminal
+## Running from Terminal
 ___
-**Local launch**
+**Local Execution**
 ```bash  
 gradle clean test
 ```
 
-**Remote launch via Jenkins**
+**Remote Execution via Jenkins**
 ```bash
 clean test
 -DremoteUrl=${REMOTE_URL}
 -DbrowserSize=${BROWSER_SIZE}
+-Dbrowser=${BROWSER}
 ```
 
+<details>
+   <summary>Additional Commands:</summary>
+  
+1. Generate the test report:
+```
+gradle allureReport
+```
+2. Open the report in a browser:
+```
+gradle allureServe
+```
+
+</details>
+
+### Remote Execution with Selenoid  
+You can execute tests from the IntelliJ IDEA terminal, and they will run in a browser hosted remotely in a Docker container via Selenoid:
+
+```bash
+gradle clean test -Denv=remote
 
 ----
 <a id="allure"></a>
