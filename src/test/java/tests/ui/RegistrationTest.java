@@ -1,4 +1,4 @@
-package tests;
+package tests.ui;
 
 import config.CredentialsConfig;
 import helpers.MyTestWatcher;
@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import pages.RegistrationPage;
+import tests.base.TestBase;
 import utils.TestData;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;

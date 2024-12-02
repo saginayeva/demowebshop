@@ -1,4 +1,4 @@
-package tests;
+package tests.base;
 
 import helpers.Attach;
 import helpers.DriverContainer;

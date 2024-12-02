@@ -1,4 +1,4 @@
-package tests.api;
+package tests.base;
 
 import helpers.DriverContainer;
 import io.restassured.RestAssured;

@@ -7,6 +7,7 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import tests.base.ApiTestBase;
 
 import java.time.Duration;
 
@@ -20,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class LoginTest extends ApiTestBase {
 
     private static final String MAIN_PAGE = "/";
+    String authCookieKey = "NOPCOMMERCE.AUTH";
 
     @Test
     void testHomePageTitle() {
@@ -34,18 +36,8 @@ public class LoginTest extends ApiTestBase {
 
     @Test
     void testSuccessfulLoginWithApi() {
-        String authCookieKey = "NOPCOMMERCE.AUTH";
-        String authCookieValue = given()
-                .contentType("application/x-www-form-urlencoded")
-                .formParam("Email", login)
-                .formParam("Password", password)
-                .when()
-                .post(LOGIN_PAGE)
-                .then()
-                .log().all()
-                .statusCode(302)
-                .extract()
-                .cookie(authCookieKey);
+        AuthApi authApi = new AuthApi(REGISTRATION_URL);
+        String authCookieValue = authApi.loginAndGetAuthCookie(login, password);
 
         assertNotNull(authCookieValue, "Authorization cookie should not be null");
 

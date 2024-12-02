@@ -4,7 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Test;
+import tests.base.ApiTestBase;
 
+import static constants.Constants.Url.REGISTRATION_URL;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,12 +15,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CartTest extends ApiTestBase {
 
     private static final String CART_PAGE = "/cart";
+    String authCookieKey = "NOPCOMMERCE.AUTH";
     private static final String ADD_TO_CART_URL = "/addproducttocart/details/72/1";
 
     @Test
     void testAddProductToCartAsAuthorizedUser() {
-        String authCookieKey = "NOPCOMMERCE.AUTH";
-        String authCookieValue = loginAndGetAuthCookie();
+        AuthApi authApi = new AuthApi(REGISTRATION_URL);
+        String authCookieValue = authApi.loginAndGetAuthCookie(login, password);
         if (authCookieValue == null) {
             log.error("Authentication failed, cannot proceed with the test.");
             return;
