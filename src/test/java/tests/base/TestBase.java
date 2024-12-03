@@ -8,7 +8,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -25,6 +24,7 @@ import static constants.Constants.Url.REGISTRATION_URL;
 public class TestBase {
     protected WebDriver driver;
     protected static boolean isRemote;
+    private static final String REMOTE_URL = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
     @BeforeAll
     static void beforeAll() {
@@ -46,21 +46,19 @@ public class TestBase {
             ChromeOptions options = new ChromeOptions();
             options.setCapability("browserVersion", "100.0");
             options.setCapability("selenoid:options", new HashMap<String, Object>() {{
-
-                /* How to enable video recording */
                 put("enableVideo", true);
                 put("enableVNC", true);
 
             }});
             try {
-                this.driver = new RemoteWebDriver(new URL("https://user1:1234@selenoid.autotests.cloud/wd/hub"), options);
+                this.driver = new RemoteWebDriver(new URL(REMOTE_URL), options);
+                DriverContainer.setDriver(driver);
             } catch (MalformedURLException e) {
                 throw new IllegalArgumentException("Bad Selenoid URL");
             }
         } else {
-            driver = new ChromeDriver();
+            driver = DriverContainer.getDriver();
         }
-        DriverContainer.setDriver(driver);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT));
         driver.get(REGISTRATION_URL);
@@ -70,7 +68,7 @@ public class TestBase {
     void tearDown() {
         attachAttachments();
         if (driver != null) {
-            driver.quit();
+            DriverContainer.closeDriver();
         }
     }
 

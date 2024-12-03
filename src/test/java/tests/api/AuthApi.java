@@ -1,14 +1,17 @@
 package tests.api;
 
+import io.restassured.RestAssured;
+
 import static io.restassured.RestAssured.given;
 
 public class AuthApi {
     private static final String LOGIN_PAGE = "/login";
-    String authCookieKey = "NOPCOMMERCE.AUTH";
     private final String baseUrl;
+    private static final String authCookieKey = "NOPCOMMERCE.AUTH";
 
     public AuthApi(String baseUrl) {
         this.baseUrl = baseUrl;
+        RestAssured.baseURI = baseUrl;
     }
 
     public String loginAndGetAuthCookie(String login, String password) {

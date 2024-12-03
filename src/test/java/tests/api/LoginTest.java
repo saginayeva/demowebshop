@@ -2,14 +2,8 @@ package tests.api;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.api.LoginPage;
 import tests.base.ApiTestBase;
-
-import java.time.Duration;
 
 import static constants.Constants.Url.REGISTRATION_URL;
 import static io.restassured.RestAssured.given;
@@ -21,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class LoginTest extends ApiTestBase {
 
     private static final String MAIN_PAGE = "/";
-    String authCookieKey = "NOPCOMMERCE.AUTH";
 
     @Test
     void testHomePageTitle() {
@@ -40,17 +33,14 @@ public class LoginTest extends ApiTestBase {
         String authCookieValue = authApi.loginAndGetAuthCookie(login, password);
 
         assertNotNull(authCookieValue, "Authorization cookie should not be null");
+        log.info("Authorization cookie retrieved successfully");
 
-        if (driver != null) {
-            openPage(MAIN_PAGE);
-            Cookie authCookie = new Cookie(authCookieKey, authCookieValue);
-            driver.manage().addCookie(authCookie);
-            driver.navigate().refresh();
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            WebElement accountElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".account")));
-            assertTrue(accountElement.getText().contains(login), "Verify successful authorization");
-            log.info("Successfully logged in and verified account page");
-        }
+        log.info("Opening main page: {}", MAIN_PAGE);
+        openPage(MAIN_PAGE);
+
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login(authCookieValue);
+        assertTrue(loginPage.isUserLoggedIn(login), "User should be logged in");
         log.info("Test completed: Successful Login with API - Passed");
     }
 }

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import pages.ShoppingCartPage;
+import pages.ui.ShoppingCartPage;
 import tests.base.TestBase;
 import utils.TestData;
 
