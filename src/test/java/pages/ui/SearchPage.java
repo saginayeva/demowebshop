@@ -1,9 +1,10 @@
-package pages;
+package pages.ui;
 
 import constants.Constants;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
+import pages.BasePage;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

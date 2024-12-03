@@ -3,8 +3,8 @@ package helpers;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import pages.BasePage;
-import pages.RegistrationPage;
-import pages.SearchPage;
+import pages.ui.RegistrationPage;
+import pages.ui.SearchPage;
 import utils.TestData;
 
 import java.math.BigDecimal;
