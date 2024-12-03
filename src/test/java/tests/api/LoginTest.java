@@ -38,7 +38,7 @@ public class LoginTest extends ApiTestBase {
         log.info("Opening main page: {}", MAIN_PAGE);
         openPage(MAIN_PAGE);
 
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage();
         loginPage.login(authCookieValue);
         assertTrue(loginPage.isUserLoggedIn(login), "User should be logged in");
         log.info("Test completed: Successful Login with API - Passed");

@@ -1,5 +1,6 @@
 package pages.api;
 
+import helpers.DriverContainer;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
@@ -8,11 +9,11 @@ import org.openqa.selenium.WebElement;
 
 @Slf4j
 public class LoginPage {
-    private WebDriver driver;
+    private final WebDriver driver;
     private static final By accountElementLocator = By.cssSelector(".account");
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
+    public LoginPage() {
+        this.driver = DriverContainer.getDriver();
     }
 
     public void login(String authCookieValue) {

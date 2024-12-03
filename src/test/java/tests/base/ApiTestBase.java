@@ -1,6 +1,8 @@
 package tests.base;
 
+import config.CredentialsConfig;
 import helpers.DriverContainer;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -10,8 +12,9 @@ import static constants.Constants.Url.REGISTRATION_URL;
 public class ApiTestBase {
 
     protected WebDriver driver;
-    protected String login = "admin@a.cz";
-    protected String password = "admin123";
+    private static final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
+    protected String login = config.login();
+    protected String password = config.password();
 
     @BeforeEach
     void setup() {
