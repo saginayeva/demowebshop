@@ -32,15 +32,4 @@ public class SystemPropertiesTests {
         String message = String.format("Hello, %s!", name);
         System.out.println(message);
     }
-
-//    public class OwnerTests {
-//        CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
-//
-//        @Test
-//        @Tag("owner")
-//        void loginTest() {
-//            String login = config.login();
-//            String password = config.password();
-//        }
-//    }
 }

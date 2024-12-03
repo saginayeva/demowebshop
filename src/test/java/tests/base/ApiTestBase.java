@@ -7,8 +7,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 
-import static constants.Constants.Url.REGISTRATION_URL;
-
 public class ApiTestBase {
 
     protected WebDriver driver;
@@ -25,7 +23,8 @@ public class ApiTestBase {
 
     protected void openPage(String path) {
         if (driver != null) {
-            String fullUrl = path.startsWith("http") ? path : REGISTRATION_URL + (path.startsWith("/") ? path : "/" + path);
+            String baseUrl = config.baseUrl();
+            String fullUrl = path.startsWith("http") ? path : baseUrl + (path.startsWith("/") ? path : "/" + path);
             driver.get(fullUrl);
         }
     }

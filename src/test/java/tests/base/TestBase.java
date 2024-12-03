@@ -1,9 +1,11 @@
 package tests.base;
 
+import config.CredentialsConfig;
 import helpers.Attach;
 import helpers.DriverContainer;
 import helpers.Screenshot;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,12 +21,11 @@ import java.time.Duration;
 import java.util.HashMap;
 
 import static constants.Constants.TimeoutVariable.IMPLICIT_WAIT;
-import static constants.Constants.Url.REGISTRATION_URL;
 
 public class TestBase {
     protected WebDriver driver;
     protected static boolean isRemote;
-    private static final String REMOTE_URL = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+    private static final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
 
     @BeforeAll
     static void beforeAll() {
@@ -43,6 +44,7 @@ public class TestBase {
     @BeforeEach
     public void setUp() {
         if (isRemote) {
+            String remoteUrl = config.getRemoteUrl();
             ChromeOptions options = new ChromeOptions();
             options.setCapability("browserVersion", "100.0");
             options.setCapability("selenoid:options", new HashMap<String, Object>() {{
@@ -51,7 +53,7 @@ public class TestBase {
 
             }});
             try {
-                this.driver = new RemoteWebDriver(new URL(REMOTE_URL), options);
+                this.driver = new RemoteWebDriver(new URL(remoteUrl), options);
                 DriverContainer.setDriver(driver);
             } catch (MalformedURLException e) {
                 throw new IllegalArgumentException("Bad Selenoid URL");
@@ -61,7 +63,7 @@ public class TestBase {
         }
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT));
-        driver.get(REGISTRATION_URL);
+        driver.get(config.baseUrl());
     }
 
     @AfterEach
