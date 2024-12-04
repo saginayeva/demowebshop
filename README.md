@@ -62,6 +62,7 @@
 ----
 <a id="cases"></a>
 ## **Examples of Automated test cases:**
+### UI Tests:
 - ✅ User Registration
 - ✅ Login Functionality
 - ✅ Product Search
