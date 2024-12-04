@@ -7,6 +7,7 @@
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Test Coverage](https://img.shields.io/badge/coverage-95%25-green)
+![Test Coverage](link-to-coverage-report)](link-to-coverage-report)
 
 ## **Contents:** ##
 
@@ -53,11 +54,11 @@
 </p>
 
 - The UI autotests were written in **Java**.
-- **Gradle** was used as a builder.
-- **JUnit 5** and **Selenium** frameworks were used as test frameworks.
+- **Gradle** is used as a build tool.
+- **JUnit 5** and **Selenium** are used as test frameworks.
 - For remote run, a job in **Jenkins** with **Allure report** generation and result send to **Telegram** via a bot has been implemented.
 - Integration with **Allure TestOps** and **Jira** has been established.
-- Docker & Selenoid: For running tests in isolated environments.
+- **Docker & Selenoid** are used for running tests in isolated environments.
 
 ----
 <a id="cases"></a>
@@ -68,10 +69,11 @@
 - ✅ Adding Items to Cart
 - ✅ Checkout Process
 
-**------------**
-- ✅ ------------
-- ✅ ------------
-- ✅ ------------
+### API Tests:
+In addition to UI tests, we also have automated API tests for the following:
+- ✅ Login Functionality
+- ✅ Add Product to Cart
+- ✅ Cart Size Verification
 - ✅ ------------
 
 
