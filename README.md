@@ -70,7 +70,6 @@
 - ✅ Checkout Process
 
 ### API Tests:
-In addition to UI tests, we also have automated API tests for the following:
 - ✅ Login Functionality
 - ✅ Add Product to Cart
 - ✅ Cart Size Verification
