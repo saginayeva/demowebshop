@@ -7,7 +7,6 @@
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Test Coverage](https://img.shields.io/badge/coverage-95%25-green)
-![Test Coverage](link-to-coverage-report)](link-to-coverage-report)
 
 ## **Contents:** ##
 
