@@ -4,12 +4,12 @@ import io.restassured.RestAssured;
 
 import static io.restassured.RestAssured.given;
 
-public class AuthApi {
+public class AuthorizationApi {
     private static final String LOGIN_PAGE = "/login";
     private final String baseUrl;
     private static final String authCookieKey = "NOPCOMMERCE.AUTH";
 
-    public AuthApi(String baseUrl) {
+    public AuthorizationApi(String baseUrl) {
         this.baseUrl = baseUrl;
         RestAssured.baseURI = baseUrl;
     }

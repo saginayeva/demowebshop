@@ -1,5 +1,7 @@
 package tests.api;
 
+import helpers.ApiRequestHelper;
+import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,7 +22,7 @@ public class CartTest extends ApiTestBase {
 
     @Test
     void testAddProductToCartAsAuthorizedUser() {
-        AuthApi authApi = new AuthApi(REGISTRATION_URL);
+        AuthorizationApi authApi = new AuthorizationApi(REGISTRATION_URL);
         String authCookieValue = authApi.loginAndGetAuthCookie(login, password);
         if (authCookieValue == null) {
             log.error("Authentication failed, cannot proceed with the test.");
@@ -88,5 +90,19 @@ public class CartTest extends ApiTestBase {
                 .body("message", is("The product has been added to your <a href=\"/cart\">shopping cart</a>"))
                 .body("updatetopcartsectionhtml", is("(2)"));
         log.debug("Response after adding product to cart: {}", data);
+    }
+
+    @Test
+    void testGetCartPageAsAuthorizedUser() {
+        ApiRequestHelper apiRequestHelper = new ApiRequestHelper(REGISTRATION_URL);
+        String authCookieValue = apiRequestHelper.loginAndGetAuthCookie(login, password);
+        if (authCookieValue == null) {
+            log.error("Authentication failed, cannot proceed with the test.");
+            return;
+        }
+
+        Response response = apiRequestHelper.get(CART_PAGE, authCookieValue);
+        response.then().statusCode(200);
+        log.debug("Response from cart page: {}", response.asString());
     }
 }

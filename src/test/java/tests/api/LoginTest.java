@@ -1,5 +1,6 @@
 package tests.api;
 
+import helpers.ApiRequestHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import pages.api.LoginPage;
@@ -29,15 +30,13 @@ public class LoginTest extends ApiTestBase {
 
     @Test
     void testSuccessfulLoginWithApi() {
-        AuthApi authApi = new AuthApi(REGISTRATION_URL);
-        String authCookieValue = authApi.loginAndGetAuthCookie(login, password);
+        ApiRequestHelper apiRequestHelper = new ApiRequestHelper(REGISTRATION_URL);
+        String authCookieValue = apiRequestHelper.loginAndGetAuthCookie(login, password);
 
         assertNotNull(authCookieValue, "Authorization cookie should not be null");
         log.info("Authorization cookie retrieved successfully");
 
-        log.info("Opening main page: {}", MAIN_PAGE);
         openPage(MAIN_PAGE);
-
         LoginPage loginPage = new LoginPage();
         loginPage.login(authCookieValue);
         assertTrue(loginPage.isUserLoggedIn(login), "User should be logged in");
