@@ -1,4 +1,4 @@
-package tests.api;
+package pages.api;
 
 import io.restassured.RestAssured;
 
