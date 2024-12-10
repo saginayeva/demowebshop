@@ -8,6 +8,11 @@
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Test Coverage](https://img.shields.io/badge/coverage-95%25-green)
 
+[![Build Status](https://travis-ci.org/lviggiano/owner.png?branch=master)](https://travis-ci.org/lviggiano/owner)
+[![Coverage Status](https://coveralls.io/repos/lviggiano/owner/badge.png)](https://coveralls.io/r/lviggiano/owner)
+[![security status](https://www.meterian.com/badge/gh/lviggiano/owner/security)](https://www.meterian.com/report/gh/lviggiano/owner)
+[![stability status](https://www.meterian.com/badge/gh/lviggiano/owner/stability)](https://www.meterian.com/report/gh/lviggiano/owner)
+
 ## **Contents:** ##
 
 * <a href="#tools">Technologies and tools</a>
