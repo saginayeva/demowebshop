@@ -1,7 +1,6 @@
-package pages.api;
+package tests.api.api;
 
 import io.restassured.RestAssured;
-
 import static io.restassured.RestAssured.given;
 
 public class AuthorizationApi {
@@ -16,7 +15,6 @@ public class AuthorizationApi {
 
     public String loginAndGetAuthCookie(String login, String password) {
         return given()
-                .baseUri(baseUrl)
                 .contentType("application/x-www-form-urlencoded")
                 .formParam("Email", login)
                 .formParam("Password", password)

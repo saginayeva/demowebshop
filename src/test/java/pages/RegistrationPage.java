@@ -1,4 +1,4 @@
-package pages.ui;
+package pages;
 
 import com.github.javafaker.Faker;
 import constants.Constants;
@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import pages.BasePage;
 
 @Slf4j
 public class RegistrationPage extends BasePage {

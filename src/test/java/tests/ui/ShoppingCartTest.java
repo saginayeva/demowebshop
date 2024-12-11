@@ -2,14 +2,23 @@ package tests.ui;
 
 import helpers.MyTestWatcher;
 import helpers.ShoppingFlowHelper;
+import io.qameta.allure.Feature;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import pages.ui.ShoppingCartPage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.ShoppingCartPage;
+import tests.api.api.AuthorizationApi;
+import tests.api.api.CartApi;
 import tests.base.TestBase;
 import utils.TestData;
+
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -21,13 +30,25 @@ public class ShoppingCartTest extends TestBase {
     private ShoppingCartPage shoppingCartPage;
     private ShoppingFlowHelper shoppingFlowHelper;
     private TestData testData;
+    private CartApi cartApi;
+    private AuthorizationApi authApi;
+    private String authCookieValue;
+    private static final String DATA = "product_attribute_72_5_18=52" +
+            "&product_attribute_72_6_19=54" +
+            "&product_attribute_72_3_20=58" +
+            "&addtocart_72.EnteredQuantity=1";
+    private static final String CART_PAGE = "/cart";
 
     @BeforeEach
     public void setUp() {
         super.setUp();
         testData = new TestData();
+        cartApi = new CartApi();
+        authApi = new AuthorizationApi(baseUrl);
         shoppingCartPage = new ShoppingCartPage(driver);
         shoppingFlowHelper = new ShoppingFlowHelper(driver);
+        authCookieValue = authApi.loginAndGetAuthCookie(login, password);
+        addAuthCookie(authCookieValue);
     }
 
     @Test
@@ -67,5 +88,22 @@ public class ShoppingCartTest extends TestBase {
         shoppingCartPage.clickContinuePaymentInformationButton()
                 .clickConfirmButton();
 //        assertTrue(shoppingCartPage.isOrderConfirmationDisplayed(), "Expected order confirmation message");
+    }
+
+    @Feature("Shopping Cart")
+    @Tag("ui-api")
+    @Test
+    @DisplayName("Add product via API and complete checkout via UI")
+    public void testAddProductToCartAndCheckout() {
+        cartApi.addProductToCart(authCookieValue, DATA);
+
+        openPage(CART_PAGE);
+        assertTrue(shoppingCartPage.isProductInCart("Simple Computer"), "Product should be in cart");
+
+        shoppingCartPage.clickTermOfServiceAgreement();
+        shoppingCartPage.clickCheckoutButton();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlContains("/onepagecheckout"));
+        assertEquals("https://demowebshop.tricentis.com/onepagecheckout", driver.getCurrentUrl(), "Checkout page URL does not match");
     }
 }

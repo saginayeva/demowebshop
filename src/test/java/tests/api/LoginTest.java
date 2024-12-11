@@ -2,8 +2,8 @@ package tests.api;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import pages.api.AuthorizationApi;
-import pages.api.LoginPage;
+import tests.api.api.AuthorizationApi;
+import tests.api.api.LoginPage;
 import tests.base.ApiTestBase;
 
 import static constants.Constants.Url.REGISTRATION_URL;

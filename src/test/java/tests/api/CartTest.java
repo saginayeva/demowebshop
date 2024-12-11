@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Test;
-import pages.api.AuthorizationApi;
+import tests.api.api.AuthorizationApi;
 import tests.base.ApiTestBase;
 
 import static constants.Constants.Url.REGISTRATION_URL;

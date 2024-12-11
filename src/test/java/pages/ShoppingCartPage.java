@@ -1,4 +1,4 @@
-package pages.ui;
+package pages;
 
 import constants.Constants;
 import io.qameta.allure.Step;
@@ -8,7 +8,6 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.NoSuchElementException;
-import pages.BasePage;
 
 import java.util.List;
 
@@ -102,6 +101,7 @@ public class ShoppingCartPage extends BasePage {
 
     @Step("Click on checkout button")
     public void clickCheckoutButton() {
+        waitElementClickable(CHECKOUT_BUTTON);
         clickElement(CHECKOUT_BUTTON);
         log.info("Clicked on checkout button");
     }
@@ -203,5 +203,11 @@ public class ShoppingCartPage extends BasePage {
         waitElementVisible(CONFIRM_BUTTON);
         clickElement(CONFIRM_BUTTON);
         log.info("Click Confirm Button");
+    }
+
+    public boolean isProductInCart(String productName) {
+        return driver.findElements(By.cssSelector(".product-name"))
+                .stream()
+                .anyMatch(element -> element.getText().contains(productName));
     }
 }

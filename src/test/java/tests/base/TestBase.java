@@ -9,6 +9,7 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -26,6 +27,9 @@ public class TestBase {
     protected WebDriver driver;
     protected static boolean isRemote;
     private static final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
+    protected String login = config.login();
+    protected String password = config.password();
+    protected String baseUrl = config.baseUrl();
 
     @BeforeAll
     static void beforeAll() {
@@ -63,7 +67,17 @@ public class TestBase {
         }
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT));
-        driver.get(config.baseUrl());
+        driver.get(baseUrl);
+    }
+
+    protected void openPage(String path) {
+        String fullUrl = baseUrl + (path.startsWith("/") ? path : "/" + path);
+        driver.get(fullUrl);
+    }
+
+    protected void addAuthCookie(String authCookieValue) {
+        driver.manage().addCookie(new Cookie("NOPCOMMERCE.AUTH", authCookieValue));
+        driver.navigate().refresh();
     }
 
     @AfterEach
