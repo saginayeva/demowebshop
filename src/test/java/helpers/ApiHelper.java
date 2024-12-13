@@ -1,6 +1,8 @@
 package helpers;
 
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
+
 import static io.restassured.RestAssured.given;
 
 public class ApiHelper {
@@ -9,6 +11,7 @@ public class ApiHelper {
 
     public ApiHelper(String baseUrl) {
         this.baseUrl = baseUrl;
+        RestAssured.filters(CustomAllureListener.withCustomTemplates());
     }
 
     public Response post(String url, String contentType, String body) {
@@ -26,8 +29,7 @@ public class ApiHelper {
     }
 
     public String loginAndGetAuthCookie(String login, String password) {
-        String loginUrl = "/login";
-        return post(loginUrl, "application/x-www-form-urlencoded",
+        return post("/login", "application/x-www-form-urlencoded",
                 "Email=" + login + "&Password=" + password)
                 .then()
                 .statusCode(302)

@@ -2,12 +2,12 @@ package tests.ui;
 
 import helpers.MyTestWatcher;
 import helpers.ShoppingFlowHelper;
-import io.qameta.allure.Feature;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -39,15 +39,18 @@ public class ShoppingCartTest extends TestBase {
     private static final String CART_PAGE = "/cart";
 
     @BeforeEach
-    public void setUp() {
+    public void setUp(TestInfo testInfo) {
         super.setUp();
         testData = new TestData();
         cartApi = new CartApi();
         AuthorizationApi authApi = new AuthorizationApi(baseUrl);
         shoppingCartPage = new ShoppingCartPage(driver);
         shoppingFlowHelper = new ShoppingFlowHelper(driver);
-        authCookieValue = authApi.loginAndGetAuthCookie(login, password);
-        addAuthCookie(authCookieValue);
+
+        if (testInfo.getTags().contains("auth")) {
+            authCookieValue = authApi.loginAndGetAuthCookie(login, password);
+            addAuthCookie(authCookieValue);
+        }
     }
 
     @Test
@@ -89,9 +92,8 @@ public class ShoppingCartTest extends TestBase {
 //        assertTrue(shoppingCartPage.isOrderConfirmationDisplayed(), "Expected order confirmation message");
     }
 
-    @Feature("Shopping Cart")
-    @Tag("ui-api")
     @Test
+    @Tag("auth")
     @DisplayName("Add product via API and complete checkout via UI")
     public void testAddProductToCartAndCheckout() {
         cartApi.addProductToCart(authCookieValue, DATA);

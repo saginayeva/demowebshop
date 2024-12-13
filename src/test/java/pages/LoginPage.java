@@ -1,4 +1,4 @@
-package tests.api.api;
+package pages;
 
 import helpers.DriverContainer;
 import lombok.extern.slf4j.Slf4j;

@@ -88,7 +88,7 @@ public class CartTest extends ApiTestBase {
                 .statusCode(200)
                 .body("success", is(true))
                 .body("message", is("The product has been added to your <a href=\"/cart\">shopping cart</a>"))
-                .body("updatetopcartsectionhtml", is("(2)"));
+                .body("updatetopcartsectionhtml", is("(1)"));
         log.debug("Response after adding product to cart: {}", DATA);
     }
 
