@@ -31,7 +31,6 @@ public class ShoppingCartTest extends TestBase {
     private ShoppingFlowHelper shoppingFlowHelper;
     private TestData testData;
     private CartApi cartApi;
-    private AuthorizationApi authApi;
     private String authCookieValue;
     private static final String DATA = "product_attribute_72_5_18=52" +
             "&product_attribute_72_6_19=54" +
@@ -44,7 +43,7 @@ public class ShoppingCartTest extends TestBase {
         super.setUp();
         testData = new TestData();
         cartApi = new CartApi();
-        authApi = new AuthorizationApi(baseUrl);
+        AuthorizationApi authApi = new AuthorizationApi(baseUrl);
         shoppingCartPage = new ShoppingCartPage(driver);
         shoppingFlowHelper = new ShoppingFlowHelper(driver);
         authCookieValue = authApi.loginAndGetAuthCookie(login, password);
