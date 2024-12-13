@@ -9,7 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.ShoppingCartPage;
@@ -20,6 +19,7 @@ import utils.TestData;
 
 import java.time.Duration;
 
+import static constants.Constants.Url.REGISTRATION_URL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -104,6 +104,6 @@ public class ShoppingCartTest extends TestBase {
         shoppingCartPage.clickCheckoutButton();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.urlContains("/onepagecheckout"));
-        assertEquals("https://demowebshop.tricentis.com/onepagecheckout", driver.getCurrentUrl(), "Checkout page URL does not match");
+        assertEquals(REGISTRATION_URL + "onepagecheckout", driver.getCurrentUrl(), "Checkout page URL does not match");
     }
 }
