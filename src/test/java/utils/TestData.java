@@ -37,35 +37,6 @@ public class TestData {
         return faker.options().option("Male", "Female");
     }
 
-    public Date getDateOfBirth() {
-        return faker.date().birthday();
-    }
-
-    public String getPicture() {
-        return "1000.jpg";
-    }
-
-    public String getSubjects() {
-        return faker.options().option("Maths", "Physics", "Computer Science", "Economics", "Arts", "History");
-    }
-
-    public String getState() {
-        return faker.options().option("NCR", "Uttar Pradesh", "Haryana");
-    }
-
-    public String getCityForState(String state) {
-        switch (state) {
-            case "NCR":
-                return faker.options().option("Delhi", "Gurgaon", "Noida");
-            case "Uttar Pradesh":
-                return faker.options().option("Agra", "Lucknow", "Merrut");
-            case "Haryana":
-                return faker.options().option("Karnal", "Panipat");
-            default:
-                return state;
-        }
-    }
-
     public String getDay(Date date) {
         SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
         return dayFormat.format(date);

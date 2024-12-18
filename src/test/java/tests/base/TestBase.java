@@ -26,7 +26,7 @@ import static constants.Constants.TimeoutVariable.IMPLICIT_WAIT;
 public class TestBase {
     protected WebDriver driver;
     protected static boolean isRemote;
-    private static final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
+    private static final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class, System.getProperties());
     protected String login = config.login();
     protected String password = config.password();
     protected String baseUrl = config.baseUrl();
