@@ -1,6 +1,5 @@
 package pages;
 
-import constants.Constants;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
@@ -10,8 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.NoSuchElementException;
 
 import java.util.List;
-
-import static constants.Constants.HeaderLinksLocators.SHOPPING_CART;
 
 @Slf4j
 public class ShoppingCartPage extends BasePage {
@@ -44,7 +41,7 @@ public class ShoppingCartPage extends BasePage {
     public ShoppingCartPage clickShoppingCartLink() {
         waitElementVisible(SHOPPING_CART);
         clickElement(SHOPPING_CART);
-        waitElementDisappear(Constants.LoadingLocators.LOADING_IMAGE);
+        waitElementDisappear(LOADING_IMAGE);
         log.info("Clicked on 'Shopping Cart' link");
         return this;
     }

@@ -1,7 +1,6 @@
 package pages;
 
 import com.github.javafaker.Faker;
-import constants.Constants;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
@@ -31,12 +30,12 @@ public class RegistrationPage extends BasePage {
 
     @Step("Click register link")
     public void clickRegisterLink() {
-        clickElement(Constants.HeaderLinksLocators.REGISTER_LINK);
+        clickElement(REGISTER_LINK);
     }
 
     @Step("Click log in link")
     public RegistrationPage clickLoginLink() {
-        clickElement(Constants.HeaderLinksLocators.LOG_IN_LINK);
+        clickElement(LOG_IN_LINK);
         return this;
     }
 

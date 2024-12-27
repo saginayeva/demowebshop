@@ -1,6 +1,5 @@
 package pages;
 
-import constants.Constants;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
@@ -9,7 +8,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 
-import static constants.Constants.HeaderLinksLocators.SHOPPING_CART;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
@@ -149,7 +147,7 @@ public class SearchPage extends BasePage {
     @Step("Add product to the shopping cart")
     public void clickAddToCartButton() {
         clickElement(ADD_TO_CART_BUTTON);
-        waitElementDisappear(Constants.LoadingLocators.LOADING_IMAGE);
+        waitElementDisappear(LOADING_IMAGE);
         waitElementDisappear(NOTIFICATION_BAR);
         log.info("Clicked on 'Add to Cart' button");
     }

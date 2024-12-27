@@ -17,6 +17,11 @@ public class BasePage {
     protected final WebDriverWait driverWait;
     protected final JavascriptExecutor jsExecutor;
 
+    protected static final By SHOPPING_CART = By.id("topcartlink");
+    protected static final By REGISTER_LINK = By.linkText("Register");
+    protected static final By LOG_IN_LINK = By.linkText("Log in");
+    protected static final By LOADING_IMAGE = By.className("loading-image");
+
     public BasePage(WebDriver driver) {
         this.driver = driver;
         driverWait = new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT));
