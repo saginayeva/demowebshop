@@ -1,15 +1,16 @@
 package tests.api;
 
+import config.CredentialsConfig;
 import helpers.ApiHelper;
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
+import org.aeonbits.owner.ConfigFactory;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Test;
 import tests.api.api.AuthorizationApi;
 import tests.base.ApiTestBase;
 
-import static constants.Constants.Url.REGISTRATION_URL;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Slf4j
 public class CartTest extends ApiTestBase {
 
+    private static final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
     private static final String CART_PAGE = "/cart";
     private static final String ADD_TO_CART_URL = "/addproducttocart/details/72/1";
     private static final String AUTH_COOKIE_KEY = "NOPCOMMERCE.AUTH";
@@ -27,7 +29,7 @@ public class CartTest extends ApiTestBase {
 
     @Test
     void testAddProductToCartAsAuthorizedUser() {
-        AuthorizationApi authApi = new AuthorizationApi(REGISTRATION_URL);
+        AuthorizationApi authApi = new AuthorizationApi(config.baseUrl());
         String authCookieValue = authApi.loginAndGetAuthCookie(login, password);
         if (authCookieValue == null) {
             log.error("Authentication failed, cannot proceed with the test.");
@@ -94,7 +96,7 @@ public class CartTest extends ApiTestBase {
 
     @Test  //что-то сломано
     void testCartAsAuthorizedUser() {
-        ApiHelper apiHelper = new ApiHelper(REGISTRATION_URL);
+        ApiHelper apiHelper = new ApiHelper(config.baseUrl());
         String authCookieValue = apiHelper.loginAndGetAuthCookie(login, password);
 
         if (authCookieValue == null) {

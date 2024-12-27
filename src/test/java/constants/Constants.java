@@ -4,10 +4,6 @@ import org.openqa.selenium.By;
 
 public class Constants {
 
-    public static class Url {
-        public static final String REGISTRATION_URL = "https://demowebshop.tricentis.com/";
-    }
-
     public static class TimeoutVariable {
 
         public static final int IMPLICIT_WAIT = 5;

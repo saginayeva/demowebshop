@@ -1,8 +1,10 @@
 package tests.ui;
 
+import config.CredentialsConfig;
 import helpers.MyTestWatcher;
 import helpers.ShoppingFlowHelper;
 import lombok.extern.slf4j.Slf4j;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -19,7 +21,6 @@ import utils.TestData;
 
 import java.time.Duration;
 
-import static constants.Constants.Url.REGISTRATION_URL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,6 +28,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Tag("web")
 @ExtendWith(MyTestWatcher.class)
 public class ShoppingCartTest extends TestBase {
+
+    private static final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
     private ShoppingCartPage shoppingCartPage;
     private ShoppingFlowHelper shoppingFlowHelper;
     private TestData testData;
@@ -105,6 +108,8 @@ public class ShoppingCartTest extends TestBase {
         shoppingCartPage.clickCheckoutButton();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.urlContains("/onepagecheckout"));
-        assertEquals(REGISTRATION_URL + "onepagecheckout", driver.getCurrentUrl(), "Checkout page URL does not match");
+        String expectedUrl = config.baseUrl() + "onepagecheckout";
+        assertEquals(expectedUrl, driver.getCurrentUrl(),
+                "Checkout page URL does not match");
     }
 }

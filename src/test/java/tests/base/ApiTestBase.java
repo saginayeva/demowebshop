@@ -13,7 +13,7 @@ import org.openqa.selenium.WebDriver;
 public class ApiTestBase {
 
     protected WebDriver driver;
-    private static final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class, System.getProperties());
+    private static final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
     protected String login = config.login();
     protected String password = config.password();
 
