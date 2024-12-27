@@ -3,8 +3,8 @@ package tests.api.api;
 import helpers.CustomAllureListener;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
-import static tests.api.specs.ReqResSpec.requestSpec;
-import static tests.api.specs.ReqResSpec.responseSpec;
+import static tests.api.api.specs.ReqResSpec.requestSpec;
+import static tests.api.api.specs.ReqResSpec.responseSpec;
 
 public class AuthorizationApi {
     private final String baseUrl;

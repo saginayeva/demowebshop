@@ -13,6 +13,7 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.BasePage;
 import pages.ShoppingCartPage;
 import tests.api.api.AuthorizationApi;
 import tests.api.api.CartApi;
@@ -35,6 +36,7 @@ public class ShoppingCartTest extends TestBase {
     private TestData testData;
     private CartApi cartApi;
     private String authCookieValue;
+    private BasePage basePage;
     private static final String DATA = "product_attribute_72_5_18=52" +
             "&product_attribute_72_6_19=54" +
             "&product_attribute_72_3_20=58" +
@@ -52,7 +54,7 @@ public class ShoppingCartTest extends TestBase {
 
         if (testInfo.getTags().contains("auth")) {
             authCookieValue = authApi.loginAndGetAuthCookie(login, password);
-            addAuthCookie(authCookieValue);
+            basePage.addAuthCookie(authCookieValue);
         }
     }
 
@@ -101,7 +103,7 @@ public class ShoppingCartTest extends TestBase {
     public void testAddProductToCartAndCheckout() {
         cartApi.addProductToCart(authCookieValue, DATA);
 
-        openPage(CART_PAGE);
+        basePage.openPage("/cart");
         assertTrue(shoppingCartPage.isProductInCart("Simple Computer"), "Product should be in cart");
 
         shoppingCartPage.clickTermOfServiceAgreement();

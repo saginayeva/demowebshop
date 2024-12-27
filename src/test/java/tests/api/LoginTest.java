@@ -6,7 +6,7 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.Test;
 import tests.api.api.AuthorizationApi;
 import pages.LoginPage;
-import tests.base.ApiTestBase;
+import tests.base.TestBase;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.core.StringContains.containsString;
@@ -14,10 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
-public class LoginTest extends ApiTestBase {
+public class LoginTest extends TestBase {
 
     private static final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
-    private static final String MAIN_PAGE = "/";
 
     @Test
     void testHomePageTitle() {
@@ -38,8 +37,8 @@ public class LoginTest extends ApiTestBase {
         assertNotNull(authCookieValue, "Authorization cookie should not be null");
         log.info("Authorization cookie retrieved successfully");
 
-        openPage(MAIN_PAGE);
-        LoginPage loginPage = new LoginPage();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.open();
         loginPage.login(authCookieValue);
         assertTrue(loginPage.isUserLoggedIn(login), "User should be logged in");
         log.info("Test completed: Successful Login with API - Passed");

@@ -1,6 +1,5 @@
 package pages;
 
-import helpers.DriverContainer;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
@@ -8,12 +7,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 @Slf4j
-public class LoginPage {
-    private final WebDriver driver;
+public class LoginPage extends BasePage {
     private static final By accountElementLocator = By.cssSelector(".account");
 
-    public LoginPage() {
-        this.driver = DriverContainer.getDriver();
+    public LoginPage(WebDriver driver) {
+        super(driver);
     }
 
     public void login(String authCookieValue) {
@@ -29,5 +27,9 @@ public class LoginPage {
         boolean isLoggedIn = accountElement.getText().contains(login);
         log.info("User logged in status: {}", isLoggedIn);
         return isLoggedIn;
+    }
+
+    public void open() {
+        openPage("/login");
     }
 }

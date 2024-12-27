@@ -1,6 +1,8 @@
 package pages;
 
+import config.CredentialsConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,7 +18,8 @@ public class BasePage {
     protected final WebDriver driver;
     protected final WebDriverWait driverWait;
     protected final JavascriptExecutor jsExecutor;
-
+    private static final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
+    protected final String baseUrl = config.baseUrl();
     protected static final By SHOPPING_CART = By.id("topcartlink");
     protected static final By REGISTER_LINK = By.linkText("Register");
     protected static final By LOG_IN_LINK = By.linkText("Log in");
@@ -118,5 +121,15 @@ public class BasePage {
 
     protected void scrollToElement(WebElement element) {
         jsExecutor.executeScript("arguments[0].scrollIntoView(false);", element);
+    }
+
+    public void openPage(String path) {
+        String fullUrl = baseUrl + (path.startsWith("/") ? path : "/" + path);
+        driver.get(fullUrl);
+    }
+
+    public void addAuthCookie(String authCookieValue) {
+        driver.manage().addCookie(new Cookie("NOPCOMMERCE.AUTH", authCookieValue));
+        driver.navigate().refresh();
     }
 }
