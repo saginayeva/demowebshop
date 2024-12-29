@@ -40,6 +40,7 @@ public class ShoppingCartPage extends BasePage {
     @Step("Click on shopping cart button")
     public ShoppingCartPage clickShoppingCartLink() {
         waitElementVisible(SHOPPING_CART);
+        waitElementDisappear(NOTIFICATION_BAR);
         clickElement(SHOPPING_CART);
         waitElementDisappear(LOADING_IMAGE);
         log.info("Clicked on 'Shopping Cart' link");
@@ -206,5 +207,13 @@ public class ShoppingCartPage extends BasePage {
         return driver.findElements(By.cssSelector(".product-name"))
                 .stream()
                 .anyMatch(element -> element.getText().contains(productName));
+    }
+
+    private void closeNotificationBar() {
+        By notificationBarClose = By.cssSelector("#bar-notification .close");
+        if (elementExists(notificationBarClose)) {
+            clickElement(notificationBarClose);
+            waitElementDisappear(NOTIFICATION_BAR);
+        }
     }
 }

@@ -14,10 +14,12 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
+    public void open() {
+        openPage("/login");
+    }
+
     public void login(String authCookieValue) {
-        Cookie authCookie = new Cookie("NOPCOMMERCE.AUTH", authCookieValue);
-        driver.manage().addCookie(authCookie);
-        driver.navigate().refresh();
+        addAuthCookie(authCookieValue);
         log.info("Login process completed, page refreshed.");
     }
 
@@ -27,9 +29,5 @@ public class LoginPage extends BasePage {
         boolean isLoggedIn = accountElement.getText().contains(login);
         log.info("User logged in status: {}", isLoggedIn);
         return isLoggedIn;
-    }
-
-    public void open() {
-        openPage("/login");
     }
 }

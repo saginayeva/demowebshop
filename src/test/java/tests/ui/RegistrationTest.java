@@ -27,6 +27,7 @@ public class RegistrationTest extends TestBase {
         super.setUp();
         testData = new TestData();
         registrationPage = new RegistrationPage(driver);
+        registrationPage.openPage("/");
         registrationPage.clickRegisterLink();
     }
 

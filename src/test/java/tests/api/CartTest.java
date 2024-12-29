@@ -1,7 +1,7 @@
 package tests.api;
 
 import config.CredentialsConfig;
-import helpers.ApiHelper;
+import tests.api.api.helpers.ApiHelper;
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;

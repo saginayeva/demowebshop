@@ -24,6 +24,7 @@ public class SearchTest extends TestBase {
     public void setUp() {
         super.setUp();
         searchPage = new SearchPage(driver);
+        searchPage.openPage("/");
     }
 
     @DisplayName("Verify search results are displayed for a valid query")

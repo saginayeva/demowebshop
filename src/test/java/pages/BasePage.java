@@ -18,12 +18,13 @@ public class BasePage {
     protected final WebDriver driver;
     protected final WebDriverWait driverWait;
     protected final JavascriptExecutor jsExecutor;
-    private static final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
+    protected static final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
     protected final String baseUrl = config.baseUrl();
     protected static final By SHOPPING_CART = By.id("topcartlink");
     protected static final By REGISTER_LINK = By.linkText("Register");
     protected static final By LOG_IN_LINK = By.linkText("Log in");
     protected static final By LOADING_IMAGE = By.className("loading-image");
+    protected static final By NOTIFICATION_BAR = By.id("bar-notification");
 
     public BasePage(WebDriver driver) {
         this.driver = driver;

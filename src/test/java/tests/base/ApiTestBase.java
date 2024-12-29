@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 public class ApiTestBase {
 
-    private static final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
+    protected static final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
     protected String login = config.login();
     protected String password = config.password();
 
@@ -22,7 +22,7 @@ public class ApiTestBase {
 
     @BeforeEach
     void initRestAssured() {
-        RestAssured.baseURI = ConfigFactory.create(CredentialsConfig.class).baseUrl();
+        RestAssured.baseURI = config.baseUrl();
     }
 
     @AfterEach

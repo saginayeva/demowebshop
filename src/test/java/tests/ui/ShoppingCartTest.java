@@ -48,18 +48,21 @@ public class ShoppingCartTest extends TestBase {
         super.setUp();
         testData = new TestData();
         cartApi = new CartApi();
+        basePage = new BasePage(driver);
         AuthorizationApi authApi = new AuthorizationApi(baseUrl);
         shoppingCartPage = new ShoppingCartPage(driver);
         shoppingFlowHelper = new ShoppingFlowHelper(driver);
 
         if (testInfo.getTags().contains("auth")) {
             authCookieValue = authApi.loginAndGetAuthCookie(login, password);
+            basePage.openPage("/");
             basePage.addAuthCookie(authCookieValue);
         }
     }
 
     @Test
     void testShoppingCart() {
+        basePage.openPage("/");
         shoppingFlowHelper.registerAndAddProductToCart();
         assertEquals("https://demowebshop.tricentis.com/simple-computer", driver.getCurrentUrl(), "Shopping cart page URL does not match");
 
