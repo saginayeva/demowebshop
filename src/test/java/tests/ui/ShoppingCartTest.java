@@ -1,10 +1,8 @@
 package tests.ui;
 
-import config.CredentialsConfig;
 import helpers.MyTestWatcher;
 import helpers.ShoppingFlowHelper;
 import lombok.extern.slf4j.Slf4j;
-import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -30,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(MyTestWatcher.class)
 public class ShoppingCartTest extends TestBase {
 
-    private static final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
     private ShoppingCartPage shoppingCartPage;
     private ShoppingFlowHelper shoppingFlowHelper;
     private TestData testData;

@@ -1,8 +1,6 @@
 package tests.api;
 
-import config.CredentialsConfig;
 import lombok.extern.slf4j.Slf4j;
-import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.Test;
 import tests.api.api.AuthorizationApi;
 import pages.LoginPage;
@@ -15,8 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
 public class LoginTest extends TestBase {
-
-    private static final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
 
     @Test
     void testHomePageTitle() {

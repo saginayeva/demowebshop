@@ -12,6 +12,7 @@ import java.math.RoundingMode;
 
 @ExtendWith(MyTestWatcher.class)
 public class ShoppingFlowHelper extends BasePage {
+
     public ShoppingFlowHelper(WebDriver driver) {
         super(driver);
     }
@@ -19,13 +20,14 @@ public class ShoppingFlowHelper extends BasePage {
     public void registerAndAddProductToCart() {
         RegistrationPage registrationPage = new RegistrationPage(driver);
         TestData testData = new TestData();
+        String gender = testData.randomGender();
         String firstName = testData.getFirstName();
         String lastName = testData.getLastName();
         String email = testData.getUserEmail();
         String password = testData.getPassword();
 
         registrationPage.clickRegisterLink();
-        registrationPage.fillRegistrationForm(firstName, lastName, email, password);
+        registrationPage.fillRegistrationForm(gender, firstName, lastName, email, password);
         registrationPage.submitRegistration();
 
         SearchPage searchPage = new SearchPage(driver);

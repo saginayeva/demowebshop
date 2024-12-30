@@ -1,6 +1,5 @@
 package pages;
 
-import com.github.javafaker.Faker;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
@@ -21,7 +20,6 @@ public class RegistrationPage extends BasePage {
     private static final By REGISTRATION_RESULT_MESSAGE = By.className("page-body");
     private static final By VALIDATION_ERROR_MESSAGE = By.className("field-validation-error");
     private static final By LOG_IN_BUTTON = By.cssSelector(".login-button");
-    private static final Faker faker = new Faker();
 
     public RegistrationPage(WebDriver driver) {
         super(driver);
@@ -65,8 +63,8 @@ public class RegistrationPage extends BasePage {
     }
 
     @Step("Fill registration form")
-    public void fillRegistrationForm(String firstName, String lastName, String email, String password) {
-        selectGender(faker.options().option("Male", "Female"));
+    public void fillRegistrationForm(String gender, String firstName, String lastName, String email, String password) {
+        selectGender(gender);
         getElement(FIRST_NAME_INPUT).sendKeys(firstName);
         getElement(LAST_NAME_INPUT).sendKeys(lastName);
         getElement(EMAIL_INPUT).sendKeys(email);

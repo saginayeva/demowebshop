@@ -33,7 +33,7 @@ public class TestData {
         return faker.address().streetAddress();
     }
 
-    public String getGender() {
+    public String randomGender() {
         return faker.options().option("Male", "Female");
     }
 

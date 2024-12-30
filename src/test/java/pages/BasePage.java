@@ -65,10 +65,6 @@ public class BasePage {
         return driverWait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    protected void waitTextToBePresent(By locator, String text) {
-        driverWait.until(ExpectedConditions.textToBePresentInElementLocated(locator, text));
-    }
-
     protected void waitElementRefreshed(By locator) {
         driverWait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(getElement(locator))));
     }
@@ -102,14 +98,6 @@ public class BasePage {
 
     protected By getCheckboxLocator(String containerId) {
         return locateFromDataTestId("container_" + containerId + ";");
-    }
-
-    protected void clickCheckbox(String containerId) {
-        jsClick(getElement(getCheckboxLocator(containerId)));
-    }
-
-    protected boolean isCheckboxChecked(String containerId) {
-        return Boolean.parseBoolean(getElement(getCheckboxLocator(containerId)).getAttribute("value"));
     }
 
     protected void jsClick(WebElement webElement) {

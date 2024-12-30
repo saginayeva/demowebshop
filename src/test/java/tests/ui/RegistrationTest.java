@@ -1,9 +1,7 @@
 package tests.ui;
 
-import config.CredentialsConfig;
 import helpers.MyTestWatcher;
 import lombok.extern.slf4j.Slf4j;
-import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -33,12 +31,13 @@ public class RegistrationTest extends TestBase {
 
     @Test
     void testSuccessfulRegistration() {
+        String gender = testData.randomGender();
         String firstName = testData.getFirstName();
         String lastName = testData.getLastName();
         String email = testData.getUserEmail();
         String password = testData.getPassword();
 
-        registrationPage.fillRegistrationForm(firstName, lastName, email, password);
+        registrationPage.fillRegistrationForm(gender, firstName, lastName, email, password);
         registrationPage.submitRegistration();
 
         String resultMessage = registrationPage.getRegistrationResult();
@@ -48,12 +47,13 @@ public class RegistrationTest extends TestBase {
 
     @Test
     void testMissingRequiredFieldError() {
+        String gender = testData.randomGender();
         String firstName = "";
         String lastName = testData.getLastName();
         String email = testData.getUserEmail();
         String password = testData.getPassword();
 
-        registrationPage.fillRegistrationForm(firstName, lastName, email, password);
+        registrationPage.fillRegistrationForm(gender, firstName, lastName, email, password);
         registrationPage.submitRegistration();
 
         String errorMessage = registrationPage.getValidationErrorMessage();
@@ -63,12 +63,13 @@ public class RegistrationTest extends TestBase {
 
     @Test
     void testInvalidEmailError() {
+        String gender = testData.randomGender();
         String firstName = testData.getFirstName();
         String lastName = testData.getLastName();
         String email = "invalidEmailFormat";
         String password = testData.getPassword();
 
-        registrationPage.fillRegistrationForm(firstName, lastName, email, password);
+        registrationPage.fillRegistrationForm(gender, firstName, lastName, email, password);
         registrationPage.submitRegistration();
 
         String errorMessage = registrationPage.getValidationErrorMessage();
@@ -79,7 +80,6 @@ public class RegistrationTest extends TestBase {
     @Test
     @Tag("owner")
     void testWithCredentials() {
-        CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
         String login = config.login();
         String password = config.password();
 

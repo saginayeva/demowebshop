@@ -1,10 +1,8 @@
 package tests.api;
 
-import config.CredentialsConfig;
 import tests.api.api.helpers.ApiHelper;
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
-import org.aeonbits.owner.ConfigFactory;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Test;
@@ -18,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Slf4j
 public class CartTest extends ApiTestBase {
 
-    private static final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
     private static final String CART_PAGE = "/cart";
     private static final String ADD_TO_CART_URL = "/addproducttocart/details/72/1";
     private static final String AUTH_COOKIE_KEY = "NOPCOMMERCE.AUTH";
