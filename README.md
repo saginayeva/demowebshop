@@ -175,17 +175,12 @@ gradle clean test -Denv=remote
 <a id="testops"></a>
 ## Integration with Allure TestOps ([link](https://allure.autotests.cloud/launch/42891))
 <p align="center">  
-<a href="https://allure.autotests.cloud/launch/42891"><img src="images/screen/allure_testops_main.png" alt="Allure TestOps" width="950"/></a>  
+<a href="https://allure.autotests.cloud/launch/42891"><img src="images/screen/allure-testops.png" alt="Allure TestOps" width="950"/></a>  
 </p>
 
-**Manual test cases**
+**Test Results Visualization**
 <p align="center">  
-<a href="https://allure.autotests.cloud/launch/42891"><img src="images/screen/allure_testops_manual.png" alt="Allure TestOps" width="950"/></a>  
-</p>
-
-**Automation test cases**
-<p align="center">  
-<a href="https://allure.autotests.cloud/launch/42891"><img src="images/screen/allure_testops_auto.png" alt="Allure TestOps" width="950"/></a>  
+<a href="https://allure.autotests.cloud/launch/42891"><img src="images/screen/allure-testops-dashboard.png" alt="Allure TestOps" width="950"/></a>  
 </p>
 
 ----
