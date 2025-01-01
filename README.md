@@ -5,7 +5,6 @@
 </p>
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![License](https://img.shields.io/badge/license-MIT-blue)
 ![Test Coverage](https://img.shields.io/badge/coverage-95%25-green)
 [![security status](https://www.meterian.com/badge/gh/lviggiano/owner/security)](https://www.meterian.com/report/gh/lviggiano/owner)
 [![stability status](https://www.meterian.com/badge/gh/lviggiano/owner/stability)](https://www.meterian.com/report/gh/lviggiano/owner)
@@ -65,11 +64,11 @@
 <a id="cases"></a>
 ## **Examples of Automated test cases:**
 ### UI Tests:
-- ✅ User Registration
-- ✅ Login Functionality
-- ✅ Product Search
-- ✅ Adding Items to Cart
-- ✅ Checkout Process
+- ✅ User registration
+- ✅ Login functionality
+- ✅ Product search
+- ✅ Adding items to cart
+- ✅ Checkout process
 
 ### API Tests:
 - ✅ Login Functionality
