@@ -7,7 +7,6 @@ import pages.*;
 import tests.api.api.AuthorizationApi;
 import tests.api.api.CartApi;
 import tests.base.TestBase;
-import utils.TestData;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -58,7 +57,8 @@ public class FullE2ETest extends TestBase {
     private void authenticateAndAddProductToCart() {
         AuthorizationApi authApi = new AuthorizationApi(config.baseUrl());
         String authCookieValue = authApi.loginAndGetAuthCookie(login, password);
-        assertNotNull(authApi.loginAndGetAuthCookie(login, password), "Authorization cookie should not be null");
+        assertNotNull(authApi.loginAndGetAuthCookie(login, password),
+                "Authorization cookie should not be null");
 
         cartApi.addProductToCart(authCookieValue, DATA);
     }
