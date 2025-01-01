@@ -65,6 +65,10 @@ public class BasePage {
         return driverWait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
+    protected void waitForTextInElement(By locator, String text) {
+        driverWait.until(ExpectedConditions.textToBePresentInElementLocated(locator, text));
+    }
+
     protected void waitElementRefreshed(By locator) {
         driverWait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(getElement(locator))));
     }

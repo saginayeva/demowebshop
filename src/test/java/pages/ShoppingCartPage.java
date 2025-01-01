@@ -32,6 +32,7 @@ public class ShoppingCartPage extends BasePage {
     private static final By CHECKBOX_CART = By.cssSelector("table.cart input[type='checkbox'][name='removefromcart']");
     private static final By TERMS_WARNING_MODAL = By.id("terms-of-service-warning-box");
     private static final By MODAL_CLOSE_BUTTON = By.cssSelector("#terms-of-service-warning-box .ui-dialog-titlebar-close");
+    private static final By CONFIRMATION = By.cssSelector(".page.checkout-page");
 
     public ShoppingCartPage(WebDriver driver) {
         super(driver);
@@ -215,5 +216,10 @@ public class ShoppingCartPage extends BasePage {
             clickElement(notificationBarClose);
             waitElementDisappear(NOTIFICATION_BAR);
         }
+    }
+
+    public boolean isOrderConfirmationDisplayed() {
+        waitForTextInElement(CONFIRMATION, "Your order has been successfully processed!");
+        return getElement(CONFIRMATION).getText().contains("Your order has been successfully processed!");
     }
 }

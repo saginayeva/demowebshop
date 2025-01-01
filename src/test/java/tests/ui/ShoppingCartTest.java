@@ -20,8 +20,7 @@ import utils.TestData;
 
 import java.time.Duration;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 @Tag("web")
@@ -61,7 +60,8 @@ public class ShoppingCartTest extends TestBase {
     void testShoppingCart() {
         basePage.openPage("/");
         shoppingFlowHelper.registerAndAddProductToCart();
-        assertEquals("https://demowebshop.tricentis.com/simple-computer", driver.getCurrentUrl(), "Shopping cart page URL does not match");
+        assertEquals("https://demowebshop.tricentis.com/simple-computer", driver.getCurrentUrl(),
+                "Shopping cart page URL does not match");
 
         shoppingCartPage
                 .clickShoppingCartLink()
@@ -69,7 +69,8 @@ public class ShoppingCartTest extends TestBase {
                 .selectState("California")
                 .clickTermOfServiceAgreement()
                 .clickCheckoutButton();
-        assertEquals("https://demowebshop.tricentis.com/onepagecheckout", driver.getCurrentUrl(), "Checkout page URL does not match");
+        assertEquals("https://demowebshop.tricentis.com/onepagecheckout", driver.getCurrentUrl(),
+                "Checkout page URL does not match");
 
     }
 
@@ -94,24 +95,66 @@ public class ShoppingCartTest extends TestBase {
 
         shoppingCartPage.clickContinuePaymentInformationButton()
                 .clickConfirmButton();
-//        assertTrue(shoppingCartPage.isOrderConfirmationDisplayed(), "Expected order confirmation message");
+        assertTrue(shoppingCartPage.isOrderConfirmationDisplayed(),
+                "Expected 'Your order has been successfully processed!' message on the final page");
     }
 
     @Test
     @Tag("auth")
-    @DisplayName("Add product via API and complete checkout via UI")
-    public void testAddProductToCartAndCheckout() {
+    @DisplayName("Full E2E: Add product via API and complete checkout via UI")
+    public void testFullE2ECheckout() {
+        authenticateAndAddProductToCart();
+        openCartAndProceedToCheckout();
+        fillShippingAndPaymentInfo();
+        confirmOrder();
+    }
+
+    private void authenticateAndAddProductToCart() {
+        AuthorizationApi authApi = new AuthorizationApi(config.baseUrl());
+        String authCookieValue = authApi.loginAndGetAuthCookie(login, password);
+        assertNotNull(authCookieValue, "Authorization cookie should not be null");
+
         cartApi.addProductToCart(authCookieValue, DATA);
+    }
 
+    private void openCartAndProceedToCheckout() {
         basePage.openPage("/cart");
-        assertTrue(shoppingCartPage.isProductInCart("Simple Computer"), "Product should be in cart");
+        assertTrue(shoppingCartPage.isProductInCart("Build your own cheap computer"),
+                "Product should be in cart");
 
-        shoppingCartPage.clickTermOfServiceAgreement();
-        shoppingCartPage.clickCheckoutButton();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.urlContains("/onepagecheckout"));
+        shoppingCartPage
+                .clickShoppingCartLink()
+                .selectCountry("United States")
+                .selectState("California")
+                .clickTermOfServiceAgreement()
+                .clickCheckoutButton();
+
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.urlContains("/onepagecheckout"));
         String expectedUrl = config.baseUrl() + "onepagecheckout";
         assertEquals(expectedUrl, driver.getCurrentUrl(),
                 "Checkout page URL does not match");
+    }
+
+    private void fillShippingAndPaymentInfo() {
+        String address = testData.getStreetAddress();
+        String phoneNumber = testData.getPhoneNumber();
+
+        shoppingCartPage
+                .clickContinueButton()
+                .clickCheckboxInStorePickup()
+                .clickContinueShippingAddressButton()
+                .clickCheckboxPaymentMethodCheckMoneyOrder()
+                .clickContinuePaymentMethodButton();
+
+        assertTrue(shoppingCartPage.isPaymentInformationDisplayed(),
+                "Payment information should be displayed");
+    }
+
+    private void confirmOrder() {
+        shoppingCartPage.clickContinuePaymentInformationButton()
+                .clickConfirmButton();
+        assertTrue(shoppingCartPage.isOrderConfirmationDisplayed(),
+                "Expected 'Your order has been successfully processed!' message on the final page");
     }
 }
