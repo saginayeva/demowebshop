@@ -42,6 +42,7 @@ public class ShoppingCartPage extends BasePage {
     public ShoppingCartPage clickShoppingCartLink() {
         waitElementVisible(SHOPPING_CART);
         waitElementDisappear(NOTIFICATION_BAR);
+        scrollToElement(getElement(SHOPPING_CART));
         clickElement(SHOPPING_CART);
         waitElementDisappear(LOADING_IMAGE);
         log.info("Clicked on 'Shopping Cart' link");
