@@ -193,7 +193,7 @@ gradle clean test -Denv=remote
 
 ----
 <a id="video"></a>
-## Selenoid test execution video examples
+## Video example
 <p align="center">
-<img title="Selenoid Video" src="images/video/checkout_page.gif" width="550" height="350"  alt="video">   
+<img title="Video" src="images/video/checkout_page.gif" width="550" height="350"  alt="video">   
 </p>
