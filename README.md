@@ -62,19 +62,35 @@
 
 ----
 <a id="cases"></a>
-## **Examples of Automated test cases:**
-### UI Tests:
-- ✅ User registration
-- ✅ Login functionality
-- ✅ Product search
-- ✅ Adding items to cart
-- ✅ Checkout process
+## **Implemented Automated Tests:**
+### **UI Tests:**
+- ✅ **User registration**
+  - Successful/Unsuccessful registration
+- ✅ **Login functionality**
+  - Successful/Unsuccessful login
+- ✅ **Product search**
+  - Successful search
+  - No results for nonexistent items
+  - Empty search query
+- ✅ **Adding items to cart**
+  - Adding items through UI
+  - Validating cart size
+- ✅ **Checkout process**
+  - Successful checkout
+  - Validation of mandatory fields
 
-### API Tests:
-- ✅ Login functionality
-- ✅ Add product to cart
-- ✅ Cart size verification
-- ✅ [UI + API] Full E2E Checkout: login, add product, and complete order
+### **API Tests:**
+- ✅ **Login functionality**
+  - Successful/Unsuccessful login requests
+- ✅ **Add product to cart**
+  - Adding product as an authenticated/anonymous user
+- ✅ **Cart size verification**
+  - Verifying cart content
+  - Validating total item count
+
+### **E2E Tests:**
+- ✅ [UI + API] **User journey:**
+  - login, add product to cart, and complete order
 
 ----
 <a id="jenkins"></a>
