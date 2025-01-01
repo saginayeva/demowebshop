@@ -67,7 +67,7 @@
 - ✅ **User registration**
   - Successful/Unsuccessful registration
 - ✅ **Login functionality**
-  - Successful/Unsuccessful login
+  - Successful login
 - ✅ **Product search**
   - Successful search
   - No results for nonexistent items
@@ -77,7 +77,6 @@
   - Validating cart size
 - ✅ **Checkout process**
   - Successful checkout
-  - Validation of mandatory fields
 
 ### **API Tests:**
 - ✅ **Login functionality**
@@ -85,12 +84,11 @@
 - ✅ **Add product to cart**
   - Adding product as an authenticated/anonymous user
 - ✅ **Cart size verification**
-  - Verifying cart content
-  - Validating total item count
+  - Verifying product presence in the cart
 
 ### **E2E Tests:**
 - ✅ [UI + API] **User journey:**
-  - login, add product to cart, and complete order
+  - Login, add product to cart, and complete order
 
 ----
 <a id="jenkins"></a>
