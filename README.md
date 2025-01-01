@@ -62,19 +62,33 @@
 
 ----
 <a id="cases"></a>
-## **Examples of Automated test cases:**
-### UI Tests:
-- ✅ User registration
-- ✅ Login functionality
-- ✅ Product search
-- ✅ Adding items to cart
-- ✅ Checkout process
+## **Implemented Automated Tests:**
+### **UI Tests:**
+- ✅ **User registration**
+  - Successful/Unsuccessful registration
+- ✅ **Login functionality**
+  - Successful login
+- ✅ **Product search**
+  - Successful search
+  - No results for nonexistent items
+  - Empty search query
+- ✅ **Adding items to cart**
+  - Adding items through UI
+  - Validating cart size
+- ✅ **Checkout process**
+  - Successful checkout
 
-### API Tests:
-- ✅ Login functionality
-- ✅ Add product to cart
-- ✅ Cart size verification
-- ✅ [UI + API] Full E2E Checkout: login, add product, and complete order
+### **API Tests:**
+- ✅ **Login functionality**
+  - Successful/Unsuccessful login requests
+- ✅ **Add product to cart**
+  - Adding product as an authenticated/anonymous user
+- ✅ **Cart size verification**
+  - Verifying product presence in the cart
+
+### **E2E Tests:**
+- ✅ [UI + API] **User journey:**
+  - Login, add product to cart, and complete order
 
 ----
 <a id="jenkins"></a>
@@ -161,17 +175,12 @@ gradle clean test -Denv=remote
 <a id="testops"></a>
 ## Integration with Allure TestOps ([link](https://allure.autotests.cloud/launch/42891))
 <p align="center">  
-<a href="https://allure.autotests.cloud/launch/42891"><img src="images/screen/allure_testops_main.png" alt="Allure TestOps" width="950"/></a>  
+<a href="https://allure.autotests.cloud/launch/42891"><img src="images/screen/allure-testops.png" alt="Allure TestOps" width="950"/></a>  
 </p>
 
-**Manual test cases**
+**Test Results Visualization**
 <p align="center">  
-<a href="https://allure.autotests.cloud/launch/42891"><img src="images/screen/allure_testops_manual.png" alt="Allure TestOps" width="950"/></a>  
-</p>
-
-**Automation test cases**
-<p align="center">  
-<a href="https://allure.autotests.cloud/launch/42891"><img src="images/screen/allure_testops_auto.png" alt="Allure TestOps" width="950"/></a>  
+<a href="https://allure.autotests.cloud/launch/42891"><img src="images/screen/allure-testops-dashboard.png" alt="Allure TestOps" width="950"/></a>  
 </p>
 
 ----
