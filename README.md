@@ -75,8 +75,6 @@
 - ✅ Login Functionality
 - ✅ Add Product to Cart
 - ✅ Cart Size Verification
-- ✅ ------------
-
 
 ----
 <a id="jenkins"></a>
