@@ -28,7 +28,7 @@
 
 * <a href="#telegram">Telegram Notifications via Bot</a>
 
-* <a href="#video">Test Execution Video Examples</a>
+* <a href="#video">Test execution video examples</a>
 
 * <a href="#POM">Page Object Model to keep code clean and maintainable</a>
 
