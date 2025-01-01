@@ -28,7 +28,7 @@
 
 * <a href="#telegram">Telegram Notifications via Bot</a>
 
-* <a href="#video">Selenoid test execution video examples</a>
+* <a href="#video">Test Execution Video Examples</a>
 
 * <a href="#POM">Page Object Model to keep code clean and maintainable</a>
 
@@ -193,7 +193,7 @@ gradle clean test -Denv=remote
 
 ----
 <a id="video"></a>
-## Video example
+## Test execution video examples
 <p align="center">
 <img title="Video" src="images/video/checkout_page.gif" width="550" height="350"  alt="video">   
 </p>
