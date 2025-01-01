@@ -71,9 +71,10 @@
 - ✅ Checkout process
 
 ### API Tests:
-- ✅ Login Functionality
-- ✅ Add Product to Cart
-- ✅ Cart Size Verification
+- ✅ Login functionality
+- ✅ Add product to cart
+- ✅ Cart size verification
+- ✅ [UI + API] Full E2E Checkout: login, add product, and complete order
 
 ----
 <a id="jenkins"></a>
