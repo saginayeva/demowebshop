@@ -23,7 +23,6 @@ public class FullE2ETest extends TestBase {
     private CartApi cartApi;
     private BasePage basePage;
     private ShoppingCartPage shoppingCartPage;
-    private String authCookieValue;
     private static final String CART_PAGE = "/cart";
     private static final String DATA = "product_attribute_72_5_18=52" +
             "&product_attribute_72_6_19=54" +
@@ -38,7 +37,7 @@ public class FullE2ETest extends TestBase {
         AuthorizationApi authApi = new AuthorizationApi(baseUrl);
         shoppingCartPage = new ShoppingCartPage(driver);
         if (testInfo.getTags().contains("auth")) {
-            authCookieValue = authApi.loginAndGetAuthCookie(login, password);
+            String authCookieValue = authApi.loginAndGetAuthCookie(login, password);
             basePage.openPage("/");
             basePage.addAuthCookie(authCookieValue);
         }

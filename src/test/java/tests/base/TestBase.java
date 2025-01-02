@@ -66,7 +66,6 @@ public class TestBase {
         }
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT));
-//        driver.get(baseUrl);
     }
 
     @AfterEach

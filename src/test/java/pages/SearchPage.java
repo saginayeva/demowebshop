@@ -14,14 +14,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class SearchPage extends BasePage {
 
     private static final By SEARCH_INPUT = By.id("small-searchterms");
-    private static final By SEARCH_BOX = By.className("search-box");
     private static final By SEARCH_BUTTON = By.cssSelector("input[value='Search']");
     private static final By SEARCH_RESULTS = By.className("search-results");
     private static final By NO_RESULTS_MESSAGE = By.className("search-results");
     private static final By SIMPLE_COMPUTER_LINK = By.linkText("Simple Computer");
     private static final By SIMPLE_COMPUTER_PRICE = By.className("prices");
     private static final By ADD_TO_CART_BUTTON = By.xpath("//input[@id='add-to-cart-button-75']");
-    private static final By CART_QUANTITY = By.className("cart-qty");
     private static final By PRODUCT_NAME_HEADER_DETAIL_PAGE = By.className("product-name");
     private static final By PRODUCT_NAME_HEADER = By.className("product-title");
     private static final By PRODUCT_PRICE = By.className("product-price");
@@ -39,24 +37,24 @@ public class SearchPage extends BasePage {
     }
 
     @Step("Find product by price '{price}'")
-    public WebElement findProductByPrice(BigDecimal price) {
+    public void findProductByPrice(BigDecimal price) {
         List<WebElement> products = getElements(SIMPLE_COMPUTER_PRICE);
         for (WebElement product : products) {
             BigDecimal actualPrice = new BigDecimal(product.getText()).setScale(2, RoundingMode.HALF_UP);
             if (actualPrice.compareTo(price.setScale(2, RoundingMode.HALF_UP)) == 0) {
-                return product;
+                return;
             }
         }
         throw new NoSuchElementException("Product with expected price not found: " + price);
     }
 
     @Step("Find product by name '{title}'")
-    public WebElement findProductByName(String title) {
+    public void findProductByName(String title) {
         List<WebElement> products = getElements(PRODUCT_NAME_HEADER);
         for (WebElement product : products) {
             String productName = product.getText().trim();
             if (productName.equalsIgnoreCase(title)) {
-                return product;
+                return;
             }
         }
         throw new NoSuchElementException("Product with title '" + title + "' not found.");
@@ -157,12 +155,5 @@ public class SearchPage extends BasePage {
         waitElementVisible(NOTIFICATION_BAR);
         return getElement(NOTIFICATION_BAR).isDisplayed() &&
                 getElement(NOTIFICATION_BAR).getText().contains("The product has been added to your shopping cart");
-    }
-
-    @Step("Click on the shopping cart link")
-    public ShoppingCartPage clickShoppingCartLink() {
-        clickElement(SHOPPING_CART);
-        log.info("Clicked on 'Shopping Cart' link");
-        return new ShoppingCartPage(driver);
     }
 }

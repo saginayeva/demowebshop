@@ -7,12 +7,10 @@ import static tests.api.api.specs.ReqResSpec.requestSpec;
 import static tests.api.api.specs.ReqResSpec.responseSpec;
 
 public class AuthorizationApi {
-    private final String baseUrl;
     private static final String LOGIN_PAGE = "/login";
     private static final String authCookieKey = "NOPCOMMERCE.AUTH";
 
     public AuthorizationApi(String baseUrl) {
-        this.baseUrl = baseUrl;
         RestAssured.baseURI = baseUrl;
         RestAssured.filters(CustomAllureListener.withCustomTemplates());
     }

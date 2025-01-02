@@ -23,10 +23,6 @@ public class ShoppingCartTest extends TestBase {
     private BasePage basePage;
     private ShoppingCartPage shoppingCartPage;
     private ShoppingFlowHelper shoppingFlowHelper;
-    private static final String DATA = "product_attribute_72_5_18=52" +
-            "&product_attribute_72_6_19=54" +
-            "&product_attribute_72_3_20=58" +
-            "&addtocart_72.EnteredQuantity=1";
 
     @BeforeEach
     public void setUp() {

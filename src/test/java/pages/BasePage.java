@@ -61,8 +61,8 @@ public class BasePage {
         driverWait.until(wd -> ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
-    protected WebElement waitElementClickable(By locator) {
-        return driverWait.until(ExpectedConditions.elementToBeClickable(locator));
+    protected void waitElementClickable(By locator) {
+        driverWait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     protected void waitForTextInElement(By locator, String text) {
@@ -71,10 +71,6 @@ public class BasePage {
 
     protected void waitElementRefreshed(By locator) {
         driverWait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(getElement(locator))));
-    }
-
-    protected void waitPageLoaded() {
-        driverWait.until(driver -> getElements(locateFromDataTestId("overlay")).isEmpty());
     }
 
     protected void handleAlert() {
