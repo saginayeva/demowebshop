@@ -168,7 +168,7 @@ gradle clean test -Denv=remote
 
 **Test cases**
 <p align="center">  
-<a href="https://jenkins.autotests.cloud/job/030_asem_jenkins_selenium/allure/"><img src="images/screen/allure_report_cases.png" alt="Allure Report testcases" width="950"/></a>  
+<a href="https://jenkins.autotests.cloud/job/030_asem_jenkins_selenium/allure/"><img src="images/screen/allure-test-case.png" alt="Allure Report testcases" width="950"/></a>  
 </p>
 
 ----
@@ -187,7 +187,7 @@ gradle clean test -Denv=remote
 <a id="jira"></a>
 ## Integration with Jira ([link](https://jira.autotests.cloud/browse/HOMEWORK-1367))
 <p align="center">  
-<a href="https://jira.autotests.cloud/browse/HOMEWORK-1367"><img src="images/screen/jira_task.png" alt="Jira" width="950"/></a>  
+<a href="https://jira.autotests.cloud/browse/HOMEWORK-1367"><img src="images/screen/jira.png" alt="Jira" width="950"/></a>  
 </p>
 
 ----
@@ -203,4 +203,9 @@ gradle clean test -Denv=remote
 ## Test execution video examples
 <p align="center">
 <img title="Video" src="images/video/checkout_page.gif" width="550" height="350"  alt="video">   
+</p>
+
+----
+<p align="center">
+<img title="Video" src="images/video/e2e.gif" width="550" height="350"  alt="video">   
 </p>
