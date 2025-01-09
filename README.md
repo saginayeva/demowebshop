@@ -65,7 +65,7 @@
 ## **Implemented Automated Tests:**
 ### **UI Tests:**
 - ✅ **User registration**
-  - Successful/Unsuccessful registration
+  - Successful and unsuccessful registration
 - ✅ **Login functionality**
   - Successful login
 - ✅ **Product search**
@@ -80,15 +80,15 @@
 
 ### **API Tests:**
 - ✅ **Login functionality**
-  - Successful/Unsuccessful login requests
+  - Successful and unsuccessful login
 - ✅ **Add product to cart**
-  - Adding product as an authenticated/anonymous user
+  - Adding product as an authenticated and anonymous user
 - ✅ **Cart size verification**
-  - Verifying product presence in the cart
+  - Verifying the presence of products in the cart
 
 ### **E2E Tests:**
 - ✅ [UI + API] **User journey:**
-  - Login, add product to cart, and complete order
+  - Login, add a product to the cart, and complete the order
 
 ----
 <a id="jenkins"></a>
