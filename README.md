@@ -73,7 +73,7 @@
   - No results for nonexistent items
   - Empty search query
 - ✅ **Adding items to cart**
-  - Adding items through UI
+  - Adding items to cart
   - Validating cart size
 - ✅ **Checkout process**
   - Successful checkout
